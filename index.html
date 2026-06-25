@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>我的小工具箱</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark app-navbar">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">
+        <i class="fa-solid fa-toolbox me-2"></i>
+        我的小工具箱
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarMenu">
+        <ul class="navbar-nav ms-auto">
+
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html" data-page="home">
+              <i class="fa-solid fa-house me-1"></i>
+              Home
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="tools.html" data-page="tools">
+              <i class="fa-solid fa-toolbox me-1"></i>
+              工具箱
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="about.html" data-page="about">
+              <i class="fa-solid fa-user me-1"></i>
+              認識我
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero-section">
+      <div class="container text-center">
+        <span class="hero-badge">
+          <i class="fa-solid fa-sparkles me-1"></i>
+          Personal Web Tools
+        </span>
+
+        <h1 class="hero-title">個人網頁小工具入口</h1>
+
+        <p class="hero-text">
+          整理自己製作的網頁小工具，方便快速開啟、測試與使用。
+        </p>
+      </div>
+    </section>
+
+    <section class="container tool-section">
+      <div class="section-header">
+        <h2>常用工具</h2>
+        <p>先放三個範例工具，之後可以持續增加自己的網頁小工具。</p>
+      </div>
+
+      <div class="row g-4">
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <a href="https://www.google.com/" target="_blank" class="tool-card-link">
+            <div class="card tool-card h-100">
+              <div class="card-body">
+                <div class="tool-icon google-icon">
+                  <i class="fa-brands fa-google"></i>
+                </div>
+
+                <h4 class="tool-title">Google 搜尋</h4>
+
+                <p class="tool-desc">
+                  快速開啟 Google，查詢資料、技術文件與網路資訊。
+                </p>
+
+                <span class="tool-action">
+                  前往 Google
+                  <i class="fa-solid fa-arrow-right ms-1"></i>
+                </span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <a href="dashboard.html" class="tool-card-link">
+            <div class="card tool-card h-100">
+              <div class="card-body">
+                <div class="tool-icon dashboard-icon">
+                  <i class="fa-solid fa-chart-line"></i>
+                </div>
+
+                <h4 class="tool-title">KPI Dashboard</h4>
+
+                <p class="tool-desc">
+                  查看自己製作的 KPI 儀表板、資料分析與管理報表。
+                </p>
+
+                <span class="tool-action">
+                  進入工具
+                  <i class="fa-solid fa-arrow-right ms-1"></i>
+                </span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <a href="equipment.html" class="tool-card-link">
+            <div class="card tool-card h-100">
+              <div class="card-body">
+                <div class="tool-icon equipment-icon">
+                  <i class="fa-solid fa-screwdriver-wrench"></i>
+                </div>
+
+                <h4 class="tool-title">設備管理工具</h4>
+
+                <p class="tool-desc">
+                  開啟設備保養、維修紀錄、零件管理相關小工具。
+                </p>
+
+                <span class="tool-action">
+                  進入工具
+                  <i class="fa-solid fa-arrow-right ms-1"></i>
+                </span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <div class="container text-center">
+      <span>© 我的小工具箱</span>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>
