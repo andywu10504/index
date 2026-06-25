@@ -170,11 +170,6 @@
   transition: transform .25s ease, box-shadow .25s ease;
 }
 
-.photo-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 28px 60px rgba(15, 23, 42, .22);
-}
-
 .photo-card i {
   font-size: 38px;
   margin-bottom: 18px;
@@ -302,11 +297,6 @@
   transition: transform .25s ease, box-shadow .25s ease;
 }
 
-.mini-tool-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 26px 55px rgba(15, 23, 42, .16);
-}
-
 .mini-tool-card i {
   width: 62px;
   height: 62px;
@@ -376,6 +366,23 @@
 
 .ending-section h2 {
   margin-bottom: 18px;
+}
+
+.story-animate {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+
+.story-animate.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.photo-card.story-animate.is-visible:hover,
+.mini-tool-card.story-animate.is-visible:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 28px 60px rgba(15, 23, 42, .22);
 }
 
 @media (max-width: 992px) {
