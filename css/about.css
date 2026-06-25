@@ -1,20 +1,32 @@
 .about-hero {
-  padding: 80px 0 60px;
+  padding: 82px 0 64px;
   background:
-    radial-gradient(circle at top left, rgba(13, 110, 253, .22), transparent 32%),
-    radial-gradient(circle at bottom right, rgba(111, 66, 193, .18), transparent 32%),
+    radial-gradient(circle at top left, rgba(13, 110, 253, .20), transparent 32%),
+    radial-gradient(circle at bottom right, rgba(255, 193, 7, .18), transparent 34%),
     #ffffff;
+}
+
+.about-badge {
+  display: inline-block;
+  padding: 8px 16px;
+  margin-bottom: 18px;
+  border-radius: 999px;
+  color: #0d6efd;
+  background: rgba(13, 110, 253, .1);
+  font-weight: 700;
 }
 
 .about-title {
   font-size: 46px;
   font-weight: 900;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
+  color: #1f2937;
 }
 
 .about-subtitle {
-  font-size: 22px;
+  font-size: 23px;
   font-weight: 700;
+  line-height: 1.6;
   color: #0d6efd;
   margin-bottom: 18px;
 }
@@ -26,20 +38,20 @@
   margin-bottom: 0;
 }
 
-.profile-card {
+.hello-card {
   padding: 34px;
-  border-radius: 24px;
+  border-radius: 28px;
   background: #ffffff;
-  box-shadow: 0 16px 40px rgba(15, 23, 42, .12);
+  box-shadow: 0 18px 42px rgba(15, 23, 42, .12);
   text-align: center;
 }
 
-.profile-avatar {
-  width: 110px;
-  height: 110px;
-  margin: 0 auto 18px;
+.hello-avatar {
+  width: 112px;
+  height: 112px;
+  margin: 0 auto 20px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #0d6efd, #6f42c1);
+  background: linear-gradient(135deg, #0d6efd, #20c997);
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -47,68 +59,120 @@
   font-size: 48px;
 }
 
-.profile-card h3 {
-  font-weight: 800;
+.hello-card h3 {
+  font-size: 26px;
+  font-weight: 900;
   margin-bottom: 4px;
+  color: #1f2937;
 }
 
-.profile-card p {
+.hello-card p {
   color: #6b7280;
-  margin-bottom: 22px;
+  margin-bottom: 20px;
+}
+
+.hello-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.hello-tags span {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #f1f5f9;
+  color: #475569;
+  font-size: 14px;
+  font-weight: 700;
 }
 
 .about-section {
   padding-top: 56px;
-  padding-bottom: 64px;
+  padding-bottom: 40px;
 }
 
-.about-card {
-  padding: 34px;
+.story-card {
+  padding: 32px;
   border-radius: 24px;
   background: #ffffff;
   box-shadow: 0 12px 30px rgba(15, 23, 42, .08);
+  transition: transform .25s ease, box-shadow .25s ease;
 }
 
-.about-card h3 {
-  font-size: 24px;
-  font-weight: 800;
+.story-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 42px rgba(15, 23, 42, .14);
+}
+
+.story-icon {
+  width: 68px;
+  height: 68px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
   margin-bottom: 22px;
 }
 
-.about-list {
-  padding-left: 20px;
-  margin-bottom: 0;
-}
-
-.about-list li {
-  margin-bottom: 12px;
-  color: #4b5563;
-  line-height: 1.7;
-}
-
-.skill-box {
-  height: 100%;
-  padding: 26px;
-  border-radius: 18px;
-  background: #f8fafc;
-  border: 1px solid #e5e7eb;
-}
-
-.skill-box i {
-  font-size: 32px;
+.story-icon.blue {
   color: #0d6efd;
+  background: rgba(13, 110, 253, .1);
+}
+
+.story-icon.green {
+  color: #198754;
+  background: rgba(25, 135, 84, .1);
+}
+
+.story-icon.purple {
+  color: #6f42c1;
+  background: rgba(111, 66, 193, .1);
+}
+
+.story-icon.orange {
+  color: #fd7e14;
+  background: rgba(253, 126, 20, .12);
+}
+
+.story-card h3 {
+  font-size: 23px;
+  font-weight: 900;
   margin-bottom: 14px;
+  color: #1f2937;
 }
 
-.skill-box h5 {
-  font-weight: 800;
-  margin-bottom: 10px;
-}
-
-.skill-box p {
+.story-card p {
   color: #6b7280;
-  line-height: 1.7;
+  line-height: 1.9;
   margin-bottom: 0;
+}
+
+.life-card {
+  padding: 38px;
+  border-radius: 28px;
+  background:
+    linear-gradient(135deg, rgba(13, 110, 253, .08), rgba(32, 201, 151, .08)),
+    #ffffff;
+  box-shadow: 0 14px 34px rgba(15, 23, 42, .09);
+}
+
+.life-card h2 {
+  font-size: 28px;
+  font-weight: 900;
+  margin-bottom: 18px;
+  color: #1f2937;
+}
+
+.life-card h2 i {
+  color: #dc3545;
+}
+
+.life-card p {
+  color: #6b7280;
+  line-height: 1.9;
+  margin-bottom: 12px;
 }
 
 @media (max-width: 576px) {
@@ -124,8 +188,19 @@
     font-size: 18px;
   }
 
-  .profile-card,
-  .about-card {
+  .about-desc {
+    font-size: 16px;
+  }
+
+  .hello-card,
+  .story-card,
+  .life-card {
     padding: 28px 22px;
+  }
+
+  .hello-avatar {
+    width: 96px;
+    height: 96px;
+    font-size: 40px;
   }
 }
