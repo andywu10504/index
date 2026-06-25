@@ -1,0 +1,131 @@
+.about-hero {
+  padding: 80px 0 60px;
+  background:
+    radial-gradient(circle at top left, rgba(13, 110, 253, .22), transparent 32%),
+    radial-gradient(circle at bottom right, rgba(111, 66, 193, .18), transparent 32%),
+    #ffffff;
+}
+
+.about-title {
+  font-size: 46px;
+  font-weight: 900;
+  margin-bottom: 12px;
+}
+
+.about-subtitle {
+  font-size: 22px;
+  font-weight: 700;
+  color: #0d6efd;
+  margin-bottom: 18px;
+}
+
+.about-desc {
+  font-size: 17px;
+  line-height: 1.9;
+  color: #6b7280;
+  margin-bottom: 0;
+}
+
+.profile-card {
+  padding: 34px;
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, .12);
+  text-align: center;
+}
+
+.profile-avatar {
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0d6efd, #6f42c1);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+}
+
+.profile-card h3 {
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.profile-card p {
+  color: #6b7280;
+  margin-bottom: 22px;
+}
+
+.about-section {
+  padding-top: 56px;
+  padding-bottom: 64px;
+}
+
+.about-card {
+  padding: 34px;
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, .08);
+}
+
+.about-card h3 {
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 22px;
+}
+
+.about-list {
+  padding-left: 20px;
+  margin-bottom: 0;
+}
+
+.about-list li {
+  margin-bottom: 12px;
+  color: #4b5563;
+  line-height: 1.7;
+}
+
+.skill-box {
+  height: 100%;
+  padding: 26px;
+  border-radius: 18px;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+}
+
+.skill-box i {
+  font-size: 32px;
+  color: #0d6efd;
+  margin-bottom: 14px;
+}
+
+.skill-box h5 {
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.skill-box p {
+  color: #6b7280;
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+@media (max-width: 576px) {
+  .about-hero {
+    padding: 56px 0 42px;
+  }
+
+  .about-title {
+    font-size: 36px;
+  }
+
+  .about-subtitle {
+    font-size: 18px;
+  }
+
+  .profile-card,
+  .about-card {
+    padding: 28px 22px;
+  }
+}

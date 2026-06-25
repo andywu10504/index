@@ -1,0 +1,145 @@
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #f4f7fb;
+  color: #1f2937;
+  font-family: "Microsoft JhengHei", "Segoe UI", sans-serif;
+}
+
+.app-navbar {
+  background: linear-gradient(135deg, #1f2937, #0d6efd);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, .15);
+}
+
+.navbar-brand {
+  letter-spacing: .5px;
+}
+
+.navbar-nav .nav-link {
+  font-weight: 600;
+  padding-left: 14px;
+  padding-right: 14px;
+  opacity: .9;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  opacity: 1;
+  color: #ffffff;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 8px 16px;
+  margin-bottom: 18px;
+  border-radius: 999px;
+  color: #0d6efd;
+  background: rgba(13, 110, 253, .1);
+  font-weight: 700;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 34px;
+}
+
+.section-header h2 {
+  font-size: 30px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.section-header p {
+  color: #6b7280;
+  margin-bottom: 0;
+}
+
+.tool-section {
+  padding-top: 56px;
+  padding-bottom: 64px;
+}
+
+.tool-card-link {
+  display: block;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.tool-card {
+  border: 0;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, .08);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.tool-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 45px rgba(15, 23, 42, .16);
+}
+
+.tool-card .card-body {
+  padding: 38px 30px;
+}
+
+.tool-icon {
+  width: 76px;
+  height: 76px;
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+  margin-bottom: 24px;
+}
+
+.bingo-icon {
+  color: #6f42c1;
+  background: rgba(111, 66, 193, .1);
+}
+
+.dashboard-icon {
+  color: #0d6efd;
+  background: rgba(13, 110, 253, .1);
+}
+
+.equipment-icon {
+  color: #198754;
+  background: rgba(25, 135, 84, .1);
+}
+
+.tool-title {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+
+.tool-desc {
+  color: #6b7280;
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+.tool-action {
+  font-weight: 700;
+  color: #0d6efd;
+}
+
+.app-footer {
+  padding: 22px 0;
+  color: #6b7280;
+  background: #ffffff;
+  border-top: 1px solid #e5e7eb;
+}
+
+@media (max-width: 576px) {
+  .tool-card .card-body {
+    padding: 32px 24px;
+  }
+}
