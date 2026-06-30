@@ -223,6 +223,14 @@
   line-height: 1.6;
 }
 
+.timeline-row-detail {
+  margin-top: 16px;
+}
+
+.timeline-row-detail:empty {
+  display: none;
+}
+
 @media (max-width: 992px) {
   .timeline-row {
     grid-template-columns: 1fr;
