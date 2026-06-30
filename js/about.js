@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function initStoryScrollAnimation() {
   const animatedElements = document.querySelectorAll(
-    ".life-card, .big-text-card, .quote-card, .timeline-column, .timeline-item, .info-card, .mini-tool-card"
+    ".story-card, .gantt-wrap, .life-card, .tools-story-text, .mini-tool-card, .belief-card"
   );
 
   if (!("IntersectionObserver" in window)) {
