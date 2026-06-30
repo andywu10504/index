@@ -46,9 +46,10 @@ const aboutProfile = {
       category: "life",
       start: 1989,
       end: 1989,
+      startDate: "1989/09/26",
+      endDate: "1989/09/26",
       desc: "高雄人，故事從這裡開始。"
     },
-
     {
       title: "懷幼幼稚園",
       groupLabel: "求學",
@@ -171,7 +172,6 @@ const aboutProfile = {
       end: "now",
       desc: "從參與服務、基本訓練，到擔任副團長、教練、助理事務等角色，在不同訓練與活動中學習團隊合作、帶領、服務精神與現場應變。"
     },
-
     {
       title: "求道",
       groupLabel: "佛堂",
@@ -179,6 +179,7 @@ const aboutProfile = {
       category: "faith",
       start: 1990,
       end: "now",
+      startDate: "1990/04/10",
       desc: "佛堂修辦歷程，從求道開始持續學習、沉澱、感恩與修身。"
     },
     {
@@ -186,8 +187,9 @@ const aboutProfile = {
       groupLabel: "佛堂",
       rowOrder: 7,
       category: "faith",
-      start: 2023,
+      start: 2018,
       end: "now",
+      startDate: "2018/11/18",
       desc: "佛堂修辦歷程，從清口愿開始持續學習、修身與實踐。"
     },
     {
@@ -197,9 +199,9 @@ const aboutProfile = {
       category: "faith",
       start: 2024,
       end: "now",
+      startDate: "2024/01/14",
       desc: "佛堂修辦歷程，承擔壇主愿，持續學習沉澱、感恩、修身與正向待人。"
-    },
-
+    }
     {
       title: "高雄市政府救護義消",
       groupLabel: "救護義消",
