@@ -18,52 +18,67 @@
   <main>
     <section class="about-hero">
       <div class="container">
-        <div class="about-hero-content">
-          <span class="hero-kicker">
-            <i class="fa-solid fa-hand-sparkles me-2"></i>
-            Hello, I am Andy Wu
-          </span>
+        <div class="row align-items-center g-5">
+          <div class="col-lg-7">
+            <div class="about-hero-content">
+              <span class="hero-kicker">
+                <i class="fa-solid fa-hand-sparkles me-2"></i>
+                Hello, I am Andy Wu
+              </span>
 
-          <h1>
-            哈囉，我是<br>
-            <span>吳宇樺</span>
-          </h1>
+              <h1 id="heroTitle"></h1>
+              <p id="heroIntro"></p>
 
-          <p>
-            1989 年出生，高雄人，也可以叫我 Andy。<br>
-            平常是半導體設備工程師，工作之外，我也投入童軍、佛堂與救護義消 EMT 服務。
-          </p>
+              <div class="hero-actions">
+                <a href="#lifeTimeline" class="btn btn-light btn-lg">
+                  <i class="fa-solid fa-timeline me-2"></i>
+                  看人生時間軸
+                </a>
 
-          <div class="hero-actions">
-            <a href="#storyStart" class="btn btn-light btn-lg">
-              <i class="fa-solid fa-book-open me-2"></i>
-              看我的故事
-            </a>
+                <a href="#lifeMosaic" class="btn btn-outline-light btn-lg">
+                  <i class="fa-solid fa-images me-2"></i>
+                  看我的生活
+                </a>
+              </div>
+            </div>
+          </div>
 
-            <a href="#lifeTimeline" class="btn btn-outline-light btn-lg">
-              <i class="fa-solid fa-timeline me-2"></i>
-              看人生時間軸
-            </a>
+          <div class="col-lg-5">
+            <div class="hero-photo-card">
+              <img id="heroImage" src="" alt="吳宇樺個人照片範例">
+              <div class="hero-photo-caption">
+                <span>Photo Placeholder</span>
+                <strong>之後可替換成你的個人照片</strong>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="story-section" id="storyStart">
+    <section class="story-section">
       <div class="container">
         <div class="story-card story-dark">
           <span class="section-label">Who I Am</span>
-          <h2>我喜歡把事情整理得更簡單、更清楚。</h2>
-          <p>
-            我喜歡把生活中、工作中反覆出現的問題整理出來，
-            再用網頁、程式或小工具，把事情變得更簡單、更清楚。
-            對我來說，做工具不是為了炫技，而是為了讓每天的工作與生活少一點重複、多一點效率。
-          </p>
+          <h2 id="storyTitle"></h2>
+          <p id="storyText"></p>
         </div>
       </div>
     </section>
 
-    <section class="gantt-section" id="lifeTimeline">
+    <section class="stats-section">
+      <div class="container">
+        <div class="section-header apple-header">
+          <span class="section-label">Life Snapshot</span>
+          <h2>用幾個數字認識我</h2>
+          <p>這些數字不是成績單，而是一路累積下來的生活軌跡。</p>
+        </div>
+
+        <div class="stats-grid" id="statsContainer"></div>
+      </div>
+    </section>
+
+    <section class="timeline-section" id="lifeTimeline">
       <div class="container">
         <div class="section-header apple-header">
           <span class="section-label">Life Timeline</span>
@@ -71,317 +86,48 @@
           <p>同一段時間，求學、工作、服務與生活一起交錯前進。</p>
         </div>
 
-        <div class="gantt-wrap">
-          <div class="gantt-years">
-            <span>1989</span>
-            <span>1995</span>
-            <span>2001</span>
-            <span>2004</span>
-            <span>2007</span>
-            <span>2009</span>
-            <span>2012</span>
-            <span>2013</span>
-            <span>2015</span>
-            <span>2021</span>
-            <span>2026</span>
-          </div>
+        <div class="timeline-legend" id="timelineLegend"></div>
 
-          <div class="gantt-row">
-            <div class="gantt-label">出生</div>
-            <div class="gantt-track">
-              <button class="gantt-dot life" style="--start:0%;" data-bs-toggle="collapse" data-bs-target="#event1989"></button>
-            </div>
-          </div>
-          <div class="collapse show gantt-detail" id="event1989">
-            <div class="detail-card">
-              <h3>1989｜出生</h3>
-              <p>高雄人，故事從這裡開始。</p>
-            </div>
-          </div>
-
-          <div class="gantt-row">
-            <div class="gantt-label">高雄市前鎮區復興國民小學</div>
-            <div class="gantt-track">
-              <button class="gantt-bar education" style="--start:16%; --width:16%;" data-bs-toggle="collapse" data-bs-target="#eventPrimary">
-                1995 - 2001
-              </button>
-            </div>
-          </div>
-          <div class="collapse show gantt-detail" id="eventPrimary">
-            <div class="detail-card">
-              <h3>1995 - 2001｜高雄市前鎮區復興國民小學</h3>
-              <p>求學歷程的開始。</p>
-            </div>
-          </div>
-
-          <div class="gantt-row">
-            <div class="gantt-label">高雄市立英明國民中學</div>
-            <div class="gantt-track">
-              <button class="gantt-bar education" style="--start:32%; --width:8%;" data-bs-toggle="collapse" data-bs-target="#eventJunior">
-                2001 - 2004
-              </button>
-            </div>
-          </div>
-          <div class="collapse show gantt-detail" id="eventJunior">
-            <div class="detail-card">
-              <h3>2001 - 2004｜高雄市立英明國民中學</h3>
-              <p>持續累積學習基礎。</p>
-            </div>
-          </div>
-
-          <div class="gantt-row">
-            <div class="gantt-label">高雄市私立大榮高級中學</div>
-            <div class="gantt-track">
-              <button class="gantt-bar education" style="--start:40%; --width:8%;" data-bs-toggle="collapse" data-bs-target="#eventSenior">
-                2004 - 2007
-              </button>
-            </div>
-          </div>
-          <div class="collapse show gantt-detail" id="eventSenior">
-            <div class="detail-card">
-              <h3>2004 - 2007｜高雄市私立大榮高級中學</h3>
-              <p>綜合高中資訊技術學程，開始更系統地接觸資訊與技術。</p>
-            </div>
-          </div>
-
-          <div class="gantt-row">
-            <div class="gantt-label">國立金門技術學院／國立金門大學</div>
-            <div class="gantt-track">
-              <button class="gantt-bar education" style="--start:48%; --width:13%;" data-bs-toggle="collapse" data-bs-target="#eventKinmen">
-                2007 - 2012
-              </button>
-            </div>
-          </div>
-          <div class="collapse show gantt-detail" id="eventKinmen">
-            <div class="detail-card">
-              <h3>2007 - 2012｜國立金門技術學院／國立金門大學</h3>
-              <p>
-                電子工程系／電子工程學系。這是同一段求學歷程，
-                因學校由國立金門技術學院改制為國立金門大學，所以名稱前後不同。
-              </p>
-            </div>
-          </div>
-
-          <div class="gantt-row">
-            <div class="gantt-label">中華民國海軍陸戰隊</div>
-            <div class="gantt-track">
-              <button class="gantt-bar military" style="--start:61%; --width:4%;" data-bs-toggle="collapse" data-bs-target="#eventMilitary">
-                2012 - 2013
-              </button>
-            </div>
-          </div>
-          <div class="collapse show gantt-detail" id="eventMilitary">
-            <div class="detail-card">
-              <h3>2012 - 2013｜中華民國海軍陸戰隊</h3>
-              <p>服役期間學會紀律、責任、抗壓與團隊合作。</p>
-            </div>
-          </div>
-
-          <div class="gantt-row">
-            <div class="gantt-label">日月光半導體</div>
-            <div class="gantt-track">
-              <button class="gantt-bar work" style="--start:65%; --width:35%;" data-bs-toggle="collapse" data-bs-target="#eventAse">
-                2013 - 2026
-              </button>
-            </div>
-          </div>
-          <div class="collapse show gantt-detail" id="eventAse">
-            <div class="detail-card">
-              <h3>2013 - 2026｜日月光半導體</h3>
-              <p>
-                設備工程師。從設備維護、異常處理，到 Dashboard、自動化與 AI Agent，
-                把工程現場經驗轉成可追蹤、可分析、可改善的工具。
-              </p>
-            </div>
-          </div>
-
-          <div class="gantt-row">
-            <div class="gantt-label">國立高雄師範大學</div>
-            <div class="gantt-track">
-              <button class="gantt-bar education" style="--start:70%; --width:16%;" data-bs-toggle="collapse" data-bs-target="#eventNknu">
-                2015 - 2021
-              </button>
-            </div>
-          </div>
-          <div class="collapse show gantt-detail" id="eventNknu">
-            <div class="detail-card">
-              <h3>2015 - 2021｜國立高雄師範大學</h3>
-              <p>軟體工程與管理學系。</p>
-              <a href="https://hdl.handle.net/11296/984c5n" target="_blank">
-                論文：以 SWI-Prolog 為基礎之專家系統應用於金門旅遊景點推薦
-              </a>
-            </div>
-          </div>
-
-          <div class="gantt-row">
-            <div class="gantt-label">童軍服務</div>
-            <div class="gantt-track">
-              <button class="gantt-bar scout" style="--start:60%; --width:40%;" data-bs-toggle="collapse" data-bs-target="#eventScout">
-                持續參與
-              </button>
-            </div>
-          </div>
-          <div class="collapse show gantt-detail" id="eventScout">
-            <div class="detail-card">
-              <h3>童軍｜服務、訓練與帶領</h3>
-              <p>
-                童軍對我來說，不只是活動，也是一段很重要的成長歷程。
-                從參與服務、基本訓練，到擔任副團長、教練、助理事務等角色，
-                我在不同訓練與活動中學習到團隊合作、帶領、服務精神與現場應變。
-              </p>
-              <ul>
-                <li>童軍木章：103/09/10</li>
-                <li>行義童軍木章：107/01/15</li>
-                <li>稚齡童軍木章：109/09/17</li>
-                <li>113 年：銀狼獎章</li>
-                <li>114 年：銀牛獎章</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="gantt-row">
-            <div class="gantt-label">佛堂</div>
-            <div class="gantt-track">
-              <button class="gantt-bar faith" style="--start:65%; --width:35%;" data-bs-toggle="collapse" data-bs-target="#eventTemple">
-                持續參與
-              </button>
-            </div>
-          </div>
-          <div class="collapse show gantt-detail" id="eventTemple">
-            <div class="detail-card">
-              <h3>佛堂｜沉澱、感恩與服務</h3>
-              <p>
-                佛堂讓我學習沉澱與感恩，也讓我用更正向的角度看待人事物。
-              </p>
-            </div>
-          </div>
-
-          <div class="gantt-row">
-            <div class="gantt-label">救護義消 EMT</div>
-            <div class="gantt-track">
-              <button class="gantt-bar emt" style="--start:70%; --width:30%;" data-bs-toggle="collapse" data-bs-target="#eventEmt">
-                持續參與
-              </button>
-            </div>
-          </div>
-          <div class="collapse show gantt-detail" id="eventEmt">
-            <div class="detail-card">
-              <h3>救護義消 EMT｜救護服務</h3>
-              <p>
-                救護義消與 EMT 訓練，讓我更理解即時判斷、責任感與救護服務的重要。
-              </p>
-            </div>
-          </div>
-
-          <div class="gantt-row">
-            <div class="gantt-label">攝影、旅遊、爬山</div>
-            <div class="gantt-track">
-              <button class="gantt-bar hobby" style="--start:65%; --width:35%;" data-bs-toggle="collapse" data-bs-target="#eventLife">
-                持續累積
-              </button>
-            </div>
-          </div>
-          <div class="collapse show gantt-detail" id="eventLife">
-            <div class="detail-card">
-              <h3>生活｜攝影、旅遊、爬山</h3>
-              <p>
-                我喜歡用照片記錄生活，也喜歡走出去看看不同地方。
-                有些風景，真的要自己走過才懂。
-              </p>
-            </div>
-          </div>
+        <div class="timeline-panel">
+          <div class="timeline-years" id="timelineYears"></div>
+          <div class="timeline-rows" id="timelineRows"></div>
         </div>
       </div>
     </section>
 
-    <section class="life-section">
+    <section class="life-mosaic-section" id="lifeMosaic">
       <div class="container">
         <div class="section-header apple-header">
           <span class="section-label">My Life</span>
-          <h2>我的生活</h2>
-          <p>工程師只是其中一個身分，生活裡的我還有很多面向。</p>
+          <h2>我的生活比重</h2>
+          <p>方框大小代表目前生活中大概的投入比重；圖片先放範例，之後可換成你的照片。</p>
         </div>
 
-        <div class="life-grid">
-          <div class="life-card life-large">
-            <i class="fa-solid fa-microchip"></i>
-            <h3>半導體設備工程師</h3>
-            <p>把設備現場、資料分析與程式工具串起來，讓改善可以被追蹤。</p>
-          </div>
-
-          <div class="life-card">
-            <i class="fa-solid fa-campground"></i>
-            <h3>童軍</h3>
-            <p>學會團隊、服務、活動帶領與解決問題。</p>
-          </div>
-
-          <div class="life-card">
-            <i class="fa-solid fa-hands-praying"></i>
-            <h3>佛堂</h3>
-            <p>學習沉澱、感恩、修身與正向待人。</p>
-          </div>
-
-          <div class="life-card">
-            <i class="fa-solid fa-truck-medical"></i>
-            <h3>救護義消 EMT</h3>
-            <p>救護訓練、救護勤務與緊急應變服務。</p>
-          </div>
-
-          <div class="life-card life-wide">
-            <i class="fa-solid fa-camera-retro"></i>
-            <h3>攝影、旅遊與爬山</h3>
-            <p>用照片記錄生活，也用腳步累積故事。</p>
-          </div>
-        </div>
+        <div class="life-mosaic" id="lifeMosaicContainer"></div>
       </div>
     </section>
 
-    <section class="tools-story-section">
+    <section class="works-section">
       <div class="container">
-        <div class="row g-4 align-items-center">
-          <div class="col-lg-5">
-            <div class="tools-story-text">
-              <span class="section-label">My Tools</span>
-              <h2>我的工具，不只是工具。</h2>
-              <p>
-                有些工具是為了省時間，有些工具是為了讓資料更清楚，
-                有些工具則是讓活動、工作或生活變得更有趣。
-              </p>
-              <a href="tools.html" class="btn btn-primary btn-lg">
-                <i class="fa-solid fa-arrow-right me-2"></i>
-                逛逛我的工具箱
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-7">
-            <div class="mini-tool-grid">
-              <div class="mini-tool-card">
-                <i class="fa-solid fa-table-cells-large"></i>
-                <h4>BINGO</h4>
-                <p>活動、遊戲、互動用的小工具。</p>
-              </div>
-
-              <div class="mini-tool-card">
-                <i class="fa-solid fa-chart-line"></i>
-                <h4>Dashboard</h4>
-                <p>把資料變成一眼看懂的畫面。</p>
-              </div>
-
-              <div class="mini-tool-card">
-                <i class="fa-solid fa-robot"></i>
-                <h4>AI Agent</h4>
-                <p>讓系統主動分析與提醒。</p>
-              </div>
-
-              <div class="mini-tool-card">
-                <i class="fa-solid fa-screwdriver-wrench"></i>
-                <h4>設備工具</h4>
-                <p>把現場經驗變成可維護的工具。</p>
-              </div>
-            </div>
-          </div>
+        <div class="section-header apple-header">
+          <span class="section-label">My Tools</span>
+          <h2>我的工具，不只是工具。</h2>
+          <p>有些工具是為了省時間，有些工具是為了讓資料更清楚，也有些是讓生活變有趣。</p>
         </div>
+
+        <div class="work-showcase" id="worksContainer"></div>
+      </div>
+    </section>
+
+    <section class="faq-section">
+      <div class="container">
+        <div class="section-header apple-header">
+          <span class="section-label">Life FAQ</span>
+          <h2>很常有人問我的問題</h2>
+          <p>有些問題很生活，也很像我。</p>
+        </div>
+
+        <div class="accordion faq-accordion" id="faqContainer"></div>
       </div>
     </section>
 
@@ -392,7 +138,7 @@
           <h2>訓練與獲獎</h2>
           <p>這些不是炫耀，而是曾經學習、投入與服務過的紀錄。</p>
         </div>
-    
+
         <div class="row g-4">
           <div class="col-lg-6">
             <div class="detail-card h-100">
@@ -400,29 +146,17 @@
                 <i class="fa-solid fa-certificate me-2 text-primary"></i>
                 訓練與資格
               </h3>
-              <ul>
-                <li>2010｜C級定向越野教練合格</li>
-                <li>2011｜C級棒球裁判合格</li>
-                <li>2012｜C級攀樹教練合格</li>
-                <li>童軍木章：103/09/10</li>
-                <li>行義童軍木章：107/01/15</li>
-                <li>稚齡童軍木章：109/09/17</li>
-                <li>救護義消 EMT 相關訓練</li>
-                <li>設備與工程專業訓練</li>
-              </ul>
+              <ul id="trainingList"></ul>
             </div>
           </div>
-    
+
           <div class="col-lg-6">
             <div class="detail-card h-100">
               <h3>
                 <i class="fa-solid fa-trophy me-2 text-warning"></i>
                 獲獎紀錄
               </h3>
-              <ul>
-                <li>113 年｜童軍銀狼獎章</li>
-                <li>114 年｜童軍銀牛獎章</li>
-              </ul>
+              <ul id="awardList"></ul>
             </div>
           </div>
         </div>
@@ -433,13 +167,8 @@
       <div class="container">
         <div class="belief-card">
           <span class="section-label">My Belief</span>
-          <h2>當你堅持你所堅持的，別人就會開始懷疑他所懷疑的。</h2>
-          <p>
-            這句話提醒我，很多事情一開始不一定會被理解。
-            但只要方向是對的，方法是踏實的，成果會慢慢讓人看見。
-            不管是工作、童軍、佛堂、救護義消，還是自己做的小工具，
-            都是一步一步堅持出來的累積。
-          </p>
+          <h2 id="beliefText"></h2>
+          <p id="beliefDesc"></p>
         </div>
       </div>
     </section>
@@ -452,6 +181,7 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="data/about.js"></script>
   <script src="js/common.js"></script>
   <script src="js/about.js"></script>
 </body>
