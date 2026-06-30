@@ -288,7 +288,7 @@ const aboutProfile = {
   certificates: [
     {
       title: "EMT-1 緊急救護技術員",
-      date: "2017",
+      date: "2017/08",
       type: "救護證照",
       image: "images/about/cert-emt1.jpg",
       icon: "fa-solid fa-truck-medical"
