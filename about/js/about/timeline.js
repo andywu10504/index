@@ -225,12 +225,12 @@ function bindTimelineSegmentClick() {
         return;
       }
 
-      setActiveTimelineItem(groups[groupIndex].items[itemIndex], button.id);
+      setActiveTimelineItem(groups[groupIndex].items[itemIndex], button.id, true);
     });
   });
 }
 
-function setActiveTimelineItem(item, activeSegmentId) {
+function setActiveTimelineItem(item, activeSegmentId, shouldScroll) {
   document.querySelectorAll(".timeline-bar").forEach(function (button) {
     button.classList.remove("is-active");
   });
@@ -242,6 +242,23 @@ function setActiveTimelineItem(item, activeSegmentId) {
   }
 
   renderTimelineCard(item);
+
+  if (shouldScroll) {
+    scrollToTimelineCard();
+  }
+}
+
+function scrollToTimelineCard() {
+  const detailPanel = document.getElementById("timelineSingleDetail");
+
+  if (!detailPanel) {
+    return;
+  }
+
+  detailPanel.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
 }
 
 function renderTimelineCard(item) {
