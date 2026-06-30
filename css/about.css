@@ -172,7 +172,8 @@
 
 .stats-section,
 .life-mosaic-section,
-.award-section {
+.award-section,
+.faq-section {
   background:
     radial-gradient(circle at top left, rgba(13, 110, 253, .12), transparent 34%),
     #f4f7fb;
@@ -185,11 +186,12 @@
 }
 
 .stat-card {
+  min-height: 230px;
   padding: 30px;
   border-radius: 28px;
   background: #ffffff;
   box-shadow: 0 16px 42px rgba(15, 23, 42, .08);
-  text-align: center;
+  text-align: left;
 }
 
 .stat-card i {
@@ -200,14 +202,17 @@
 
 .stat-card strong {
   display: block;
-  font-size: 38px;
+  font-size: 28px;
+  line-height: 1.25;
   font-weight: 950;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
 .stat-card span {
+  display: block;
   color: #6b7280;
   font-weight: 700;
+  line-height: 1.8;
 }
 
 .timeline-section {
@@ -241,7 +246,10 @@
 }
 
 .timeline-panel {
+  width: 100%;
+  max-width: 100%;
   overflow-x: auto;
+  overflow-y: hidden;
   padding: 28px;
   border-radius: 34px;
   background: #f8fafc;
@@ -249,7 +257,22 @@
   box-shadow: 0 20px 55px rgba(15, 23, 42, .08);
 }
 
+.timeline-panel::-webkit-scrollbar {
+  height: 10px;
+}
+
+.timeline-panel::-webkit-scrollbar-track {
+  background: #e5e7eb;
+  border-radius: 999px;
+}
+
+.timeline-panel::-webkit-scrollbar-thumb {
+  background: #0d6efd;
+  border-radius: 999px;
+}
+
 .timeline-years {
+  width: 1120px;
   min-width: 1120px;
   display: flex;
   justify-content: space-between;
@@ -260,10 +283,14 @@
   font-weight: 900;
 }
 
+.timeline-rows {
+  width: 1340px;
+  min-width: 1340px;
+}
+
 .timeline-row {
-  min-width: 1320px;
   display: grid;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: 200px 1120px;
   gap: 20px;
   align-items: center;
   margin-bottom: 14px;
@@ -273,6 +300,7 @@
   color: #1f2937;
   font-weight: 900;
   text-align: right;
+  line-height: 1.4;
 }
 
 .timeline-track {
@@ -320,6 +348,8 @@
 
 .timeline-detail {
   grid-column: 2 / 3;
+  width: 1120px;
+  max-width: 1120px;
 }
 
 .detail-card {
@@ -479,12 +509,6 @@
   margin-bottom: 0;
 }
 
-.faq-section {
-  background:
-    radial-gradient(circle at top left, rgba(13, 110, 253, .12), transparent 34%),
-    #f4f7fb;
-}
-
 .faq-accordion {
   max-width: 920px;
   margin: 0 auto;
@@ -556,6 +580,10 @@
   .stats-grid,
   .work-showcase {
     grid-template-columns: 1fr;
+  }
+
+  .stat-card {
+    min-height: auto;
   }
 
   .timeline-panel {
