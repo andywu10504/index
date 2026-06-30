@@ -203,7 +203,7 @@ const aboutProfile = {
     },
 
     {
-      title: "童軍服務",
+      title: "童軍運動",
       groupLabel: "童軍",
       rowOrder: 6,
       category: "scout",
