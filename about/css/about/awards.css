@@ -1,0 +1,232 @@
+.award-category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.award-section .detail-card {
+  height: 100%;
+}
+
+.award-section .detail-card ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.award-list-item {
+  margin-bottom: 12px;
+}
+
+.award-empty-text {
+  color: #94a3b8;
+  font-weight: 800;
+  padding: 12px 0;
+}
+
+.award-item-button {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr) 24px;
+  gap: 14px;
+  align-items: center;
+  padding: 16px 18px;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  background: #ffffff;
+  text-align: left;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, .06);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+.award-item-button:hover {
+  transform: translateY(-2px);
+  border-color: rgba(13, 110, 253, .35);
+  box-shadow: 0 16px 34px rgba(15, 23, 42, .12);
+}
+
+.award-item-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #0d6efd;
+  background: rgba(13, 110, 253, .1);
+  font-size: 20px;
+}
+
+.award-item-content {
+  min-width: 0;
+}
+
+.award-item-content strong {
+  display: block;
+  color: #111827;
+  font-size: 16px;
+  font-weight: 950;
+  line-height: 1.5;
+}
+
+.award-item-content small {
+  display: block;
+  color: #6b7280;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.award-item-arrow {
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.award-modal-content {
+  border: 0;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(15, 23, 42, .25);
+}
+
+.award-modal-content .modal-header {
+  padding: 24px 28px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.award-modal-content .modal-body {
+  padding: 26px 28px 30px;
+}
+
+.award-modal-kicker {
+  display: inline-block;
+  margin-bottom: 6px;
+  color: #0d6efd;
+  font-size: 13px;
+  font-weight: 950;
+  letter-spacing: .5px;
+}
+
+.award-modal-content .modal-title {
+  color: #111827;
+  font-size: 26px;
+  font-weight: 950;
+  line-height: 1.35;
+}
+
+.award-modal-subtitle {
+  color: #4b5563;
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1.8;
+  margin-bottom: 10px;
+}
+
+.award-modal-desc {
+  color: #6b7280;
+  line-height: 1.9;
+  margin-bottom: 18px;
+}
+
+.award-modal-image-wrap {
+  margin-top: 18px;
+}
+
+.award-modal-image-card {
+  margin: 0;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  background: #f8fafc;
+}
+
+.award-modal-image-card img {
+  width: 100%;
+  max-height: 520px;
+  object-fit: contain;
+  display: block;
+  background: #f8fafc;
+}
+
+.award-modal-image-card figcaption {
+  padding: 12px 16px;
+  color: #6b7280;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.award-empty-image {
+  min-height: 220px;
+  border-radius: 22px;
+  border: 2px dashed #cbd5e1;
+  background: #f8fafc;
+  color: #94a3b8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-weight: 800;
+}
+
+.award-empty-image i {
+  font-size: 42px;
+}
+
+.award-modal-meta {
+  list-style: none;
+  padding-left: 0;
+  margin: 18px 0 0;
+  display: grid;
+  gap: 10px;
+}
+
+.award-modal-meta li {
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr);
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: #f8fafc;
+}
+
+.award-modal-meta strong {
+  color: #111827;
+  font-weight: 950;
+}
+
+.award-modal-meta span {
+  color: #6b7280;
+  font-weight: 700;
+}
+
+@media (max-width: 992px) {
+  .award-category-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .award-item-button {
+    grid-template-columns: 42px minmax(0, 1fr) 20px;
+    padding: 14px;
+  }
+
+  .award-item-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .award-modal-content .modal-header,
+  .award-modal-content .modal-body {
+    padding: 20px;
+  }
+
+  .award-modal-content .modal-title {
+    font-size: 22px;
+  }
+
+  .award-modal-meta li {
+    grid-template-columns: 1fr;
+  }
+}
