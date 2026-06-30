@@ -349,16 +349,16 @@ const aboutProfile = {
       icon: "fa-solid fa-trophy"
     },
     {
-      title: "童軍銀狼獎章",
+      title: "銀狼獎章",
       date: "113 年",
-      type: "獲獎紀錄",
+      type: "童軍紀錄",
       image: "images/about/award-silver-wolf.jpg",
       icon: "fa-solid fa-trophy"
     },
     {
-      title: "童軍銀牛獎章",
+      title: "銀牛獎章",
       date: "114 年",
-      type: "獲獎紀錄",
+      type: "童軍紀錄",
       image: "images/about/award-silver-bull.jpg",
       icon: "fa-solid fa-award"
     }
