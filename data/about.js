@@ -17,44 +17,74 @@ const aboutProfile = {
 
   stats: [
     {
-      value: "設備 × 程式",
-      label: "我把半導體現場經驗，整理成 Dashboard、自動化與網頁小工具。",
+      number: 1989,
+      suffix: "",
+      label: "出生",
+      note: "故事從高雄開始",
+      icon: "fa-solid fa-location-dot"
+    },
+    {
+      number: 13,
+      suffix: "+",
+      label: "設備工程",
+      note: "2013 起投入半導體設備現場",
       icon: "fa-solid fa-microchip"
     },
     {
-      value: "童軍 × 服務",
-      label: "從活動、訓練到服務角色，學會團隊、帶領與現場應變。",
+      number: 15,
+      suffix: "+",
+      label: "童軍",
+      note: "服務、訓練、帶領與活動經驗",
       icon: "fa-solid fa-campground"
     },
     {
-      value: "佛堂 × 修身",
-      label: "學習沉澱、感恩與正向待人，也讓生活多一份安定。",
-      icon: "fa-solid fa-hands-praying"
-    },
-    {
-      value: "救護義消 EMT",
-      label: "透過救護訓練與勤務，學習即時判斷、責任與服務。",
+      number: 10,
+      suffix: "+",
+      label: "EMT",
+      note: "救護義消、救護訓練與勤務",
       icon: "fa-solid fa-truck-medical"
     },
     {
-      value: "電子 → 軟體",
-      label: "從電子工程到軟體工程與管理，把硬體、設備、資料與系統串在一起。",
-      icon: "fa-solid fa-code"
-    },
-    {
-      value: "3 張 C 級資格",
-      label: "定向越野教練、棒球裁判、攀樹教練，都是不同階段的學習痕跡。",
-      icon: "fa-solid fa-certificate"
-    },
-    {
-      value: "3 項木章紀錄",
-      label: "童軍木章、行義童軍木章、稚齡童軍木章。",
+      number: 3,
+      suffix: "",
+      label: "木章",
+      note: "童軍、行義童軍、稚齡童軍木章",
       icon: "fa-solid fa-award"
     },
     {
-      value: "2 項童軍獎章",
-      label: "113 年銀狼獎章、114 年銀牛獎章。",
+      number: 2,
+      suffix: "",
+      label: "獎章",
+      note: "銀狼獎章、銀牛獎章",
       icon: "fa-solid fa-trophy"
+    },
+    {
+      number: 3,
+      suffix: "",
+      label: "證照",
+      note: "定向越野、棒球裁判、攀樹教練",
+      icon: "fa-solid fa-certificate"
+    },
+    {
+      number: "∞",
+      suffix: "",
+      label: "持續學習",
+      note: "Learning never stops",
+      icon: "fa-solid fa-infinity"
+    },
+    {
+      number: 5,
+      suffix: "",
+      label: "身份",
+      note: "設備工程師、童軍、佛堂、救護義消、開發者",
+      icon: "fa-solid fa-user-gear"
+    },
+    {
+      number: 4,
+      suffix: "",
+      label: "專長",
+      note: "設備、程式、AI、自動化",
+      icon: "fa-solid fa-layer-group"
     }
   ],
 
@@ -157,20 +187,76 @@ const aboutProfile = {
     }
   ],
 
-  training: [
-    "2010｜C級定向越野教練合格",
-    "2011｜C級棒球裁判合格",
-    "2012｜C級攀樹教練合格",
-    "童軍木章：103/09/10",
-    "行義童軍木章：107/01/15",
-    "稚齡童軍木章：109/09/17",
-    "救護義消 EMT 相關訓練",
-    "設備與工程專業訓練"
+  lifeMosaic: [
+    {
+      title: "設備工程",
+      ratio: 36,
+      icon: "fa-solid fa-microchip",
+      image: "https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=1000&q=80",
+      desc: "把現場問題整理成可以追蹤的資料與工具。"
+    },
+    {
+      title: "童軍",
+      ratio: 24,
+      icon: "fa-solid fa-campground",
+      image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=80",
+      desc: "團隊、服務、活動帶領與現場應變。"
+    },
+    {
+      title: "佛堂",
+      ratio: 14,
+      icon: "fa-solid fa-hands-praying",
+      image: "https://images.unsplash.com/photo-1604608678051-64d46d7ec860?auto=format&fit=crop&w=1000&q=80",
+      desc: "沉澱、感恩、修身與正向待人。"
+    },
+    {
+      title: "救護義消 EMT",
+      ratio: 12,
+      icon: "fa-solid fa-truck-medical",
+      image: "https://images.unsplash.com/photo-1587745416684-47953f16f02f?auto=format&fit=crop&w=1000&q=80",
+      desc: "救護訓練、勤務與緊急應變。"
+    },
+    {
+      title: "攝影與旅遊",
+      ratio: 8,
+      icon: "fa-solid fa-camera-retro",
+      image: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1000&q=80",
+      desc: "用照片記錄生活。"
+    },
+    {
+      title: "爬山",
+      ratio: 6,
+      icon: "fa-solid fa-mountain-sun",
+      image: "https://images.unsplash.com/photo-1454496522488-7a8e488e8606?auto=format&fit=crop&w=1000&q=80",
+      desc: "用腳步累積故事。"
+    }
   ],
 
-  awards: [
-    "113 年｜童軍銀狼獎章",
-    "114 年｜童軍銀牛獎章"
+  works: [
+    {
+      title: "BINGO",
+      icon: "fa-solid fa-table-cells-large",
+      desc: "活動、遊戲、互動用的小工具。",
+      image: "https://images.unsplash.com/photo-1606167668584-78701c57f13d?auto=format&fit=crop&w=1000&q=80"
+    },
+    {
+      title: "Dashboard",
+      icon: "fa-solid fa-chart-line",
+      desc: "把資料變成一眼看懂的畫面。",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=80"
+    },
+    {
+      title: "AI Agent",
+      icon: "fa-solid fa-robot",
+      desc: "讓系統主動分析與提醒。",
+      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1000&q=80"
+    },
+    {
+      title: "設備工具",
+      icon: "fa-solid fa-screwdriver-wrench",
+      desc: "把現場經驗變成可維護的工具。",
+      image: "https://images.unsplash.com/photo-1581091215367-59ab6b35f5a1?auto=format&fit=crop&w=1000&q=80"
+    }
   ],
 
   faq: [
@@ -185,6 +271,26 @@ const aboutProfile = {
     {
       question: "為什麼一直做小工具？",
       answer: "因為我不喜歡重複做同樣的事情。如果一個工具可以讓未來少按很多次滑鼠、少花很多時間整理資料，我覺得就值得。"
+    },
+    {
+      question: "為什麼會同時做這麼多事情？",
+      answer: "工作、童軍、佛堂、救護義消、攝影、旅遊，看起來很多，但其實都是同一件事：讓自己持續學習，也讓自己有能力幫上一點忙。"
     }
+  ],
+
+  training: [
+    "2010｜C級定向越野教練合格",
+    "2011｜C級棒球裁判合格",
+    "2012｜C級攀樹教練合格",
+    "童軍木章：103/09/10",
+    "行義童軍木章：107/01/15",
+    "稚齡童軍木章：109/09/17",
+    "救護義消 EMT 相關訓練",
+    "設備與工程專業訓練"
+  ],
+
+  awards: [
+    "113 年｜童軍銀狼獎章",
+    "114 年｜童軍銀牛獎章"
   ]
 };
