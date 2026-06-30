@@ -246,19 +246,72 @@ const aboutProfile = {
     { question: "為什麼會同時做這麼多事情？", answer: "工作、童軍、佛堂、救護義消，看起來很多，但其實都是同一件事：讓自己持續學習，也讓自己有能力幫上一點忙。" }
   ],
 
-  training: [
-    "2010｜C級定向越野教練合格",
-    "2011｜C級棒球裁判合格",
-    "2012｜C級攀樹教練合格",
-    "童軍木章：103/09/10",
-    "行義童軍木章：107/01/15",
-    "稚齡童軍木章：109/09/17",
-    "EMT-1 緊急救護技術員",
-    "設備與工程專業訓練"
-  ],
+training: [
+  {
+    title: "C級定向越野教練合格",
+    date: "2010",
+    type: "訓練資格",
+    image: "images/about/cert-orienteering.jpg",
+    icon: "fa-solid fa-map-location-dot"
+  },
+  {
+    title: "C級棒球裁判合格",
+    date: "2011",
+    type: "訓練資格",
+    image: "images/about/cert-baseball.jpg",
+    icon: "fa-solid fa-baseball"
+  },
+  {
+    title: "C級攀樹教練合格",
+    date: "2012",
+    type: "訓練資格",
+    image: "images/about/cert-tree-climbing.jpg",
+    icon: "fa-solid fa-tree"
+  },
+  {
+    title: "童軍木章",
+    date: "103/09/10",
+    type: "童軍訓練",
+    image: "images/about/cert-scout-woodbadge.jpg",
+    icon: "fa-solid fa-campground"
+  },
+  {
+    title: "行義童軍木章",
+    date: "107/01/15",
+    type: "童軍訓練",
+    image: "images/about/cert-rover-woodbadge.jpg",
+    icon: "fa-solid fa-campground"
+  },
+  {
+    title: "稚齡童軍木章",
+    date: "109/09/17",
+    type: "童軍訓練",
+    image: "images/about/cert-cub-woodbadge.jpg",
+    icon: "fa-solid fa-campground"
+  },
+  {
+    title: "EMT-1 緊急救護技術員",
+    date: "",
+    type: "救護證照",
+    image: "images/about/cert-emt1.jpg",
+    icon: "fa-solid fa-truck-medical"
+  }
+],
 
-  awards: [
-    "113 年｜童軍銀狼獎章",
-    "114 年｜童軍銀牛獎章"
-  ]
+awards: [
+  {
+    title: "童軍銀狼獎章",
+    date: "113 年",
+    type: "獲獎紀錄",
+    image: "images/about/award-silver-wolf.jpg",
+    icon: "fa-solid fa-trophy"
+  },
+  {
+    title: "童軍銀牛獎章",
+    date: "114 年",
+    type: "獲獎紀錄",
+    image: "images/about/award-silver-bull.jpg",
+    icon: "fa-solid fa-award"
+  }
+]
 };
