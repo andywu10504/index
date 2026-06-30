@@ -137,7 +137,7 @@ const aboutProfile = {
 
     {
       title: "學生會新聞部長",
-      groupLabel: "社團",
+      groupLabel: "學生自治/社團",
       rowOrder: 5,
       category: "club",
       start: 2008,
@@ -146,7 +146,7 @@ const aboutProfile = {
     },
     {
       title: "浯風羅浮群群長",
-      groupLabel: "社團",
+      groupLabel: "學生自治/社團",
       rowOrder: 5,
       category: "club",
       start: 2009,
@@ -155,7 +155,7 @@ const aboutProfile = {
     },
     {
       title: "學生會總務部長",
-      groupLabel: "社團",
+      groupLabel: "學生自治/社團",
       rowOrder: 5,
       category: "club",
       start: 2009,
@@ -164,7 +164,7 @@ const aboutProfile = {
     },
     {
       title: "學生議會議員",
-      groupLabel: "社團",
+      groupLabel: "學生自治/社團",
       rowOrder: 5,
       category: "club",
       start: 2010,
