@@ -4,7 +4,7 @@ const aboutProfile = {
   nickname: "雷夢",
   birthYear: 1989,
   currentEndYear: new Date().getFullYear(),
-  heroImage: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80",
+  heroImage: "./image/個人照_吳宇樺.jpg",
 
   heroTitle: "哈囉，我是<br><span>吳宇樺</span>",
   heroIntro: "1989 年出生，高雄人，也可以叫我 Andy。<br>平常是半導體設備工程師，工作之外，我也投入童軍、佛堂與救護義消服務。",
