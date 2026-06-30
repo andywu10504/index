@@ -21,7 +21,7 @@ const aboutProfile = {
     { number: 19, suffix: "+", label: "童軍", note: "服務、訓練、帶領與活動經驗", icon: "fa-solid fa-campground" },
     { number: 3, suffix: "+", label: "救護義消", note: "救護訓練、救護勤務與緊急應變", icon: "fa-solid fa-truck-medical" },
     { number: 5, suffix: "", label: "身份", note: "設備工程師、童軍、佛堂、救護義消、開發者", icon: "fa-solid fa-user-gear" },
-    { number: 4, suffix: "", label: "專長", note: "設備、程式、AI、自動化", icon: "fa-solid fa-layer-group" }
+    { number: 2, suffix: "", label: "專長", note: "程式設計、活動企劃", icon: "fa-solid fa-layer-group" }
     { number: 3, suffix: "", label: "木章", note: "童軍、行義童軍、稚齡童軍木章", icon: "fa-solid fa-award" },
     { number: 2, suffix: "", label: "獎章", note: "銀狼獎章、銀牛獎章", icon: "fa-solid fa-trophy" },
     { number: 3, suffix: "", label: "證照", note: "定向越野、棒球裁判、攀樹教練", icon: "fa-solid fa-certificate" },
