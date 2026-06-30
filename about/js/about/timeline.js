@@ -49,18 +49,15 @@ function renderTimelineRows(startYear, endYear, totalYears) {
     row.className = "timeline-row story-animate";
 
     const trackHeight = getTimelineTrackHeight(group.items.length);
-    const rowYears = getTimelineRowYearMarks(group.items, endYear);
+    const rowYears = getTimelineRowYearMarks(group.items, startYear, endYear, totalYears);
 
     row.innerHTML = `
       <div class="timeline-label">${escapeHtml(group.label)}</div>
 
       <div class="timeline-body">
         <div class="timeline-row-years">
-          ${rowYears.map(function (year) {
-            const left = clampPercent(((year - startYear) / totalYears) * 100);
-            const label = year === endYear ? "Now" : year;
-
-            return `<span class="timeline-row-year-mark" style="left:${left}%;">${label}</span>`;
+          ${rowYears.map(function (mark) {
+            return `<span class="timeline-row-year-mark" style="left:${mark.left}%;">${mark.label}</span>`;
           }).join("")}
         </div>
 
@@ -82,8 +79,10 @@ function renderTimelineRows(startYear, endYear, totalYears) {
 
   bindTimelineSegmentClick();
 
+  const firstItem = groups.length > 0 && groups[0].items.length > 0 ? groups[0].items[0] : null;
+
   if (firstItem) {
-    setActiveTimelineItem(firstItem, "timelineSegment0_0");
+    renderTimelineCard(firstItem);
   }
 }
 
@@ -115,47 +114,85 @@ function groupTimelineItems(timelineItems) {
     })
     .map(function (group) {
       group.items.sort(function (a, b) {
-        if (a.start !== b.start) {
-          return a.start - b.start;
+        const aStart = getTimelineStartValue(a);
+        const bStart = getTimelineStartValue(b);
+
+        if (aStart !== bStart) {
+          return aStart - bStart;
         }
 
-        return getTimelineEndYear(a) - getTimelineEndYear(b);
+        return getTimelineEndValue(a) - getTimelineEndValue(b);
       });
 
       return group;
     });
 }
 
-function getTimelineRowYearMarks(items, endYear) {
-  const years = new Set();
+function getTimelineRowYearMarks(items, startYear, endYear, totalYears) {
+  const marks = [];
 
   items.forEach(function (item) {
-    years.add(item.start);
+    addTimelineYearMark(marks, getTimelineStartYear(item), startYear, totalYears);
 
     if (item.end === "now") {
-      years.add(endYear);
+      addTimelineYearMark(marks, endYear, startYear, totalYears);
     } else {
-      years.add(item.end);
+      addTimelineYearMark(marks, getTimelineEndYear(item), startYear, totalYears);
     }
   });
 
-  return Array.from(years).sort(function (a, b) {
-    return a - b;
+  return marks
+    .sort(function (a, b) {
+      return a.year - b.year;
+    })
+    .filter(function (mark, index, array) {
+      if (index === 0) {
+        return true;
+      }
+
+      const previous = array[index - 1];
+
+      if (mark.year === previous.year) {
+        return false;
+      }
+
+      return Math.abs(mark.left - previous.left) >= 7;
+    })
+    .map(function (mark) {
+      return {
+        year: mark.year,
+        left: mark.left,
+        label: mark.year === endYear ? "Now" : String(mark.year)
+      };
+    });
+}
+
+function addTimelineYearMark(marks, year, startYear, totalYears) {
+  if (!year || Number.isNaN(year)) {
+    return;
+  }
+
+  const left = clampPercent(((year - startYear) / totalYears) * 100);
+
+  marks.push({
+    year: year,
+    left: left
   });
 }
 
 function renderTimelineSegment(item, itemIndex, groupIndex, startYear, endYear, totalYears) {
   const category = getTimelineCategory(item.category);
-  const itemEnd = getTimelineEndYear(item, endYear);
-  const safeStart = Math.max(item.start, startYear);
-  const safeEnd = Math.min(itemEnd, endYear);
+  const itemStartValue = getTimelineStartValue(item);
+  const itemEndValue = getTimelineEndValue(item, endYear);
+  const safeStart = Math.max(itemStartValue, startYear);
+  const safeEnd = Math.min(itemEndValue, endYear);
   const left = clampPercent(((safeStart - startYear) / totalYears) * 100);
   const top = 10 + (itemIndex * 42);
   const segmentId = getTimelineSegmentId(groupIndex, itemIndex);
 
   let width = ((safeEnd - safeStart) / totalYears) * 100;
 
-  if (item.start === itemEnd) {
+  if (width <= 0) {
     width = 8;
   }
 
@@ -167,7 +204,7 @@ function renderTimelineSegment(item, itemIndex, groupIndex, startYear, endYear, 
             id="${segmentId}"
             class="timeline-bar"
             style="left:${left}%; top:${top}px; width:${width}%; background:${category.color};"
-            title="${escapeHtml(formatTimelinePeriod(item.start, item.end) + "｜" + item.title)}"
+            title="${escapeHtml(formatTimelinePeriod(item)) + "｜" + escapeHtml(item.title)}"
             data-group-index="${groupIndex}"
             data-item-index="${itemIndex}">
       ${escapeHtml(item.title)}
@@ -194,12 +231,6 @@ function bindTimelineSegmentClick() {
 }
 
 function setActiveTimelineItem(item, activeSegmentId) {
-  const detailPanel = document.getElementById("timelineSingleDetail");
-
-  if (!detailPanel) {
-    return;
-  }
-
   document.querySelectorAll(".timeline-bar").forEach(function (button) {
     button.classList.remove("is-active");
   });
@@ -210,12 +241,22 @@ function setActiveTimelineItem(item, activeSegmentId) {
     activeButton.classList.add("is-active");
   }
 
+  renderTimelineCard(item);
+}
+
+function renderTimelineCard(item) {
+  const detailPanel = document.getElementById("timelineSingleDetail");
+
+  if (!detailPanel) {
+    return;
+  }
+
   const category = getTimelineCategory(item.category);
 
   detailPanel.innerHTML = `
     <div class="timeline-feature-card" style="border-left-color:${category.color};">
       <div class="timeline-feature-content">
-        <span class="timeline-feature-period">${escapeHtml(formatTimelinePeriod(item.start, item.end))}</span>
+        <span class="timeline-feature-period">${escapeHtml(formatTimelinePeriod(item))}</span>
         <h3>${escapeHtml(item.title)}</h3>
         ${renderTimelineDescription(item)}
       </div>
@@ -317,22 +358,77 @@ function getTimelineCategory(key) {
   }) || aboutProfile.timelineCategories[0];
 }
 
-function getTimelineEndYear(item, fallbackEndYear) {
+function getTimelineStartYear(item) {
+  if (item.startDate) {
+    return Number(item.startDate.substring(0, 4));
+  }
+
+  return item.start;
+}
+
+function getTimelineEndYear(item) {
   if (item.end === "now") {
-    return fallbackEndYear || aboutProfile.currentEndYear;
+    return aboutProfile.currentEndYear;
+  }
+
+  if (item.endDate) {
+    return Number(item.endDate.substring(0, 4));
   }
 
   return item.end;
 }
 
-function formatTimelinePeriod(start, end) {
-  if (start === end) {
-    return String(start);
+function getTimelineStartValue(item) {
+  if (item.startDate) {
+    return dateToYearValue(item.startDate);
   }
 
-  if (end === "now") {
-    return start + " - Now";
+  return item.start;
+}
+
+function getTimelineEndValue(item, fallbackEndYear) {
+  if (item.end === "now") {
+    return fallbackEndYear || aboutProfile.currentEndYear;
   }
 
-  return start + " - " + end;
+  if (item.endDate) {
+    return dateToYearValue(item.endDate);
+  }
+
+  return item.end;
+}
+
+function dateToYearValue(dateText) {
+  const normalized = String(dateText).replaceAll("-", "/");
+  const parts = normalized.split("/");
+
+  if (parts.length < 3) {
+    return Number(parts[0]);
+  }
+
+  const year = Number(parts[0]);
+  const month = Number(parts[1]);
+  const day = Number(parts[2]);
+
+  if (Number.isNaN(year) || Number.isNaN(month) || Number.isNaN(day)) {
+    return year;
+  }
+
+  const startOfYear = new Date(year, 0, 1);
+  const currentDate = new Date(year, month - 1, day);
+  const nextYear = new Date(year + 1, 0, 1);
+  const progress = (currentDate - startOfYear) / (nextYear - startOfYear);
+
+  return year + progress;
+}
+
+function formatTimelinePeriod(item) {
+  const startText = item.startDate || String(item.start);
+  const endText = item.end === "now" ? "Now" : (item.endDate || String(item.end));
+
+  if (startText === endText) {
+    return startText;
+  }
+
+  return startText + " - " + endText;
 }
