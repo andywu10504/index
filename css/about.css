@@ -68,6 +68,7 @@
 .gantt-section,
 .life-section,
 .tools-story-section,
+.award-section,
 .belief-section {
   padding: 88px 0;
 }
@@ -454,6 +455,7 @@
   .gantt-section,
   .life-section,
   .tools-story-section,
+  .award-section,
   .belief-section {
     padding: 58px 0;
   }
