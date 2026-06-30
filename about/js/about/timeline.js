@@ -43,7 +43,6 @@ function renderTimelineRows(startYear, endYear, totalYears) {
   container.innerHTML = "";
 
   const groups = groupTimelineItems(aboutProfile.timeline);
-  const firstItem = groups.length > 0 && groups[0].items.length > 0 ? groups[0].items[0] : null;
 
   groups.forEach(function (group, groupIndex) {
     const row = document.createElement("div");
