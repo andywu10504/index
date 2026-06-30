@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   renderAboutPage();
   initStoryScrollAnimation();
+  initStatsCounterAnimation();
   console.log("認識我頁面初始化完成");
 });
 
@@ -22,28 +23,48 @@ function renderAboutPage() {
 }
 
 function renderHero() {
-  document.getElementById("heroTitle").innerHTML = aboutProfile.heroTitle;
-  document.getElementById("heroIntro").innerHTML = aboutProfile.heroIntro;
-  document.getElementById("heroImage").src = aboutProfile.heroImage;
+  setInnerHtml("heroTitle", aboutProfile.heroTitle);
+  setInnerHtml("heroIntro", aboutProfile.heroIntro);
+
+  const heroImage = document.getElementById("heroImage");
+
+  if (heroImage) {
+    heroImage.src = aboutProfile.heroImage;
+  }
 }
 
 function renderStory() {
-  document.getElementById("storyTitle").textContent = aboutProfile.storyTitle;
-  document.getElementById("storyText").textContent = aboutProfile.storyText;
+  setText("storyTitle", aboutProfile.storyTitle);
+  setText("storyText", aboutProfile.storyText);
 }
 
 function renderStats() {
   const container = document.getElementById("statsContainer");
+
+  if (!container) {
+    return;
+  }
+
   container.innerHTML = "";
 
   aboutProfile.stats.forEach(function (item) {
     const card = document.createElement("div");
     card.className = "stat-card";
+
+    const isNumber = typeof item.number === "number";
+    const displayValue = isNumber ? "0" : item.number;
+
     card.innerHTML = `
       <i class="${item.icon}"></i>
-      <strong>${item.value}</strong>
-      <span>${item.label}</span>
+      <strong>
+        <span class="stat-number"
+              data-value="${isNumber ? item.number : ""}"
+              data-type="${isNumber ? "number" : "text"}">${displayValue}</span><span class="stat-suffix">${item.suffix || ""}</span>
+      </strong>
+      <span class="stat-label">${item.label}</span>
+      <p class="stat-note">${item.note}</p>
     `;
+
     container.appendChild(card);
   });
 }
@@ -61,6 +82,11 @@ function renderTimeline() {
 
 function renderTimelineLegend() {
   const container = document.getElementById("timelineLegend");
+
+  if (!container) {
+    return;
+  }
+
   container.innerHTML = "";
 
   aboutProfile.timelineCategories.forEach(function (category) {
@@ -72,6 +98,11 @@ function renderTimelineLegend() {
 
 function renderTimelineYears(startYear, endYear) {
   const container = document.getElementById("timelineYears");
+
+  if (!container) {
+    return;
+  }
+
   const years = getTimelineYearMarks(startYear, endYear);
 
   container.innerHTML = "";
@@ -85,6 +116,7 @@ function renderTimelineYears(startYear, endYear) {
 
 function getTimelineYearMarks(startYear, endYear) {
   const importantYears = [1989, 1995, 2001, 2004, 2007, 2012, 2013, 2015, 2021, endYear];
+
   return [...new Set(importantYears)].filter(function (year) {
     return year >= startYear && year <= endYear;
   });
@@ -92,6 +124,11 @@ function getTimelineYearMarks(startYear, endYear) {
 
 function renderTimelineRows(startYear, endYear, totalYears) {
   const container = document.getElementById("timelineRows");
+
+  if (!container) {
+    return;
+  }
+
   container.innerHTML = "";
 
   aboutProfile.timeline.forEach(function (item, index) {
@@ -105,6 +142,7 @@ function renderTimelineRows(startYear, endYear, totalYears) {
 
     row.innerHTML = `
       <div class="timeline-label">${item.title}</div>
+
       <div class="timeline-track">
         <button type="button"
                 class="${item.start === itemEnd ? "timeline-dot" : "timeline-bar"}"
@@ -114,6 +152,7 @@ function renderTimelineRows(startYear, endYear, totalYears) {
           ${item.start === itemEnd ? "" : formatPeriod(item.start, item.end, endYear)}
         </button>
       </div>
+
       <div class="collapse show timeline-detail" id="timelineDetail${index}">
         <div class="detail-card">
           <h3>${formatPeriod(item.start, item.end, endYear)}｜${item.title}</h3>
@@ -147,6 +186,11 @@ function formatPeriod(start, end, currentYear) {
 
 function renderLifeMosaic() {
   const container = document.getElementById("lifeMosaicContainer");
+
+  if (!container) {
+    return;
+  }
+
   container.innerHTML = "";
 
   aboutProfile.lifeMosaic.forEach(function (item) {
@@ -186,11 +230,17 @@ function getMosaicBasis(ratio) {
 
 function renderWorks() {
   const container = document.getElementById("worksContainer");
+
+  if (!container) {
+    return;
+  }
+
   container.innerHTML = "";
 
   aboutProfile.works.forEach(function (item) {
     const card = document.createElement("div");
     card.className = "work-card";
+
     card.innerHTML = `
       <img src="${item.image}" alt="${item.title} 範例圖片">
       <div class="work-content">
@@ -199,12 +249,18 @@ function renderWorks() {
         <p>${item.desc}</p>
       </div>
     `;
+
     container.appendChild(card);
   });
 }
 
 function renderFaq() {
   const container = document.getElementById("faqContainer");
+
+  if (!container) {
+    return;
+  }
+
   container.innerHTML = "";
 
   aboutProfile.faq.forEach(function (item, index) {
@@ -214,12 +270,14 @@ function renderFaq() {
 
     const faq = document.createElement("div");
     faq.className = "accordion-item";
+
     faq.innerHTML = `
       <h2 class="accordion-header">
         <button class="accordion-button ${collapsedClass}" type="button" data-bs-toggle="collapse" data-bs-target="#${faqId}">
           ${item.question}
         </button>
       </h2>
+
       <div id="${faqId}" class="accordion-collapse collapse ${collapseClass}" data-bs-parent="#faqContainer">
         <div class="accordion-body">
           ${item.answer}
@@ -238,6 +296,11 @@ function renderTrainingAndAwards() {
 
 function renderList(containerId, list) {
   const container = document.getElementById(containerId);
+
+  if (!container) {
+    return;
+  }
+
   container.innerHTML = "";
 
   list.forEach(function (text) {
@@ -248,8 +311,70 @@ function renderList(containerId, list) {
 }
 
 function renderBelief() {
-  document.getElementById("beliefText").textContent = aboutProfile.belief;
-  document.getElementById("beliefDesc").textContent = aboutProfile.beliefDesc;
+  setText("beliefText", aboutProfile.belief);
+  setText("beliefDesc", aboutProfile.beliefDesc);
+}
+
+function initStatsCounterAnimation() {
+  const statNumbers = document.querySelectorAll(".stat-number[data-type='number']");
+
+  if (statNumbers.length === 0) {
+    return;
+  }
+
+  if (!("IntersectionObserver" in window)) {
+    statNumbers.forEach(function (element) {
+      element.textContent = element.getAttribute("data-value");
+    });
+
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          animateNumber(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.6
+    }
+  );
+
+  statNumbers.forEach(function (element) {
+    observer.observe(element);
+  });
+}
+
+function animateNumber(element) {
+  const target = Number(element.getAttribute("data-value"));
+
+  if (Number.isNaN(target)) {
+    return;
+  }
+
+  const duration = 1200;
+  const startTime = performance.now();
+
+  function update(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const easedProgress = 1 - Math.pow(1 - progress, 3);
+    const currentValue = Math.floor(target * easedProgress);
+
+    element.textContent = currentValue.toLocaleString("zh-TW");
+
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    } else {
+      element.textContent = target.toLocaleString("zh-TW");
+    }
+  }
+
+  requestAnimationFrame(update);
 }
 
 function initStoryScrollAnimation() {
@@ -283,4 +408,20 @@ function initStoryScrollAnimation() {
     element.classList.add("story-animate");
     observer.observe(element);
   });
+}
+
+function setText(id, value) {
+  const element = document.getElementById(id);
+
+  if (element) {
+    element.textContent = value;
+  }
+}
+
+function setInnerHtml(id, value) {
+  const element = document.getElementById(id);
+
+  if (element) {
+    element.innerHTML = value;
+  }
 }
