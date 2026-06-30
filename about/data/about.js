@@ -18,8 +18,8 @@ const aboutProfile = {
   stats: [
     { number: 1989, suffix: "", label: "出生", note: "故事從高雄開始", icon: "fa-solid fa-location-dot" },
     { number: 13, suffix: "+", label: "設備工程", note: "2013 起投入半導體設備現場", icon: "fa-solid fa-microchip" },
-    { number: 15, suffix: "+", label: "童軍", note: "服務、訓練、帶領與活動經驗", icon: "fa-solid fa-campground" },
-    { number: 10, suffix: "+", label: "救護義消", note: "救護訓練、救護勤務與緊急應變", icon: "fa-solid fa-truck-medical" },
+    { number: 19, suffix: "+", label: "童軍", note: "服務、訓練、帶領與活動經驗", icon: "fa-solid fa-campground" },
+    { number: 3, suffix: "+", label: "救護義消", note: "救護訓練、救護勤務與緊急應變", icon: "fa-solid fa-truck-medical" },
     { number: 5, suffix: "", label: "身份", note: "設備工程師、童軍、佛堂、救護義消、開發者", icon: "fa-solid fa-user-gear" },
     { number: 4, suffix: "", label: "專長", note: "設備、程式、AI、自動化", icon: "fa-solid fa-layer-group" }
     { number: 3, suffix: "", label: "木章", note: "童軍、行義童軍、稚齡童軍木章", icon: "fa-solid fa-award" },
@@ -51,7 +51,7 @@ const aboutProfile = {
       desc: "高雄人，故事從這裡開始。"
     },
     {
-      title: "n 私立懷幼幼稚園",
+      title: "私立懷幼幼稚園",
       groupLabel: "求學",
       rowOrder: 3,
       category: "education",
@@ -168,7 +168,7 @@ const aboutProfile = {
       groupLabel: "童軍",
       rowOrder: 6,
       category: "scout",
-      start: 2010,
+      start: 2007,
       end: "now",
       desc: "從參與服務、基本訓練，到擔任副團長、教練、助理事務等角色，在不同訓練與活動中學習團隊合作、帶領、服務精神與現場應變。"
     },
