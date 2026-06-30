@@ -20,7 +20,7 @@ const aboutProfile = {
     { number: 13, suffix: "+", label: "設備工程", note: "2013 起投入半導體設備現場", icon: "fa-solid fa-microchip" },
     { number: 19, suffix: "+", label: "童軍", note: "服務、訓練、帶領與活動經驗", icon: "fa-solid fa-campground" },
     { number: 3, suffix: "+", label: "救護義消", note: "救護訓練、救護勤務與緊急應變", icon: "fa-solid fa-truck-medical" },
-    { number: 5, suffix: "", label: "身份", note: "設備工程師、童軍、佛堂、救護義消、開發者", icon: "fa-solid fa-user-gear" },
+    { number: 5, suffix: "", label: "身份", note: "設備工程師、童軍服務員、救護義消、開發者、佛堂壇主", icon: "fa-solid fa-user-gear" },
     { number: 2, suffix: "", label: "專長", note: "程式設計、活動企劃", icon: "fa-solid fa-layer-group" },
     { number: 7, suffix: "", label: "興趣", note: "攝影、旅遊、爬山、棒球、電腦、音樂、閱讀", icon: "fa-solid fa-heart" },
     { number: 3, suffix: "", label: "木章", note: "童軍、行義童軍、稚齡童軍木章", icon: "fa-solid fa-award" },
