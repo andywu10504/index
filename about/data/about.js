@@ -20,12 +20,12 @@ const aboutProfile = {
     { number: 13, suffix: "+", label: "設備工程", note: "2013 起投入半導體設備現場", icon: "fa-solid fa-microchip" },
     { number: 15, suffix: "+", label: "童軍", note: "服務、訓練、帶領與活動經驗", icon: "fa-solid fa-campground" },
     { number: 10, suffix: "+", label: "救護義消", note: "救護訓練、救護勤務與緊急應變", icon: "fa-solid fa-truck-medical" },
+    { number: 5, suffix: "", label: "身份", note: "設備工程師、童軍、佛堂、救護義消、開發者", icon: "fa-solid fa-user-gear" },
+    { number: 4, suffix: "", label: "專長", note: "設備、程式、AI、自動化", icon: "fa-solid fa-layer-group" }
     { number: 3, suffix: "", label: "木章", note: "童軍、行義童軍、稚齡童軍木章", icon: "fa-solid fa-award" },
     { number: 2, suffix: "", label: "獎章", note: "銀狼獎章、銀牛獎章", icon: "fa-solid fa-trophy" },
     { number: 3, suffix: "", label: "證照", note: "定向越野、棒球裁判、攀樹教練", icon: "fa-solid fa-certificate" },
-    { number: "∞", suffix: "", label: "持續學習", note: "Learning never stops", icon: "fa-solid fa-infinity" },
-    { number: 5, suffix: "", label: "身份", note: "設備工程師、童軍、佛堂、救護義消、開發者", icon: "fa-solid fa-user-gear" },
-    { number: 4, suffix: "", label: "專長", note: "設備、程式、AI、自動化", icon: "fa-solid fa-layer-group" }
+    { number: "∞", suffix: "", label: "持續學習", note: "Learning never stops", icon: "fa-solid fa-infinity" }
   ],
 
   timelineCategories: [
@@ -51,7 +51,7 @@ const aboutProfile = {
       desc: "高雄人，故事從這裡開始。"
     },
     {
-      title: "懷幼幼稚園",
+      title: "n 私立懷幼幼稚園",
       groupLabel: "求學",
       rowOrder: 3,
       category: "education",
