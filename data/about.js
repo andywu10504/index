@@ -16,10 +16,46 @@ const aboutProfile = {
   beliefDesc: "這句話提醒我，很多事情一開始不一定會被理解。但只要方向是對的，方法是踏實的，成果會慢慢讓人看見。",
 
   stats: [
-    { value: "1989", label: "出生於高雄", icon: "fa-solid fa-location-dot" },
-    { value: "2013+", label: "半導體設備工程", icon: "fa-solid fa-microchip" },
-    { value: "3", label: "童軍木章紀錄", icon: "fa-solid fa-campground" },
-    { value: "2", label: "童軍獎章紀錄", icon: "fa-solid fa-trophy" }
+    {
+      value: "設備 × 程式",
+      label: "我把半導體現場經驗，整理成 Dashboard、自動化與網頁小工具。",
+      icon: "fa-solid fa-microchip"
+    },
+    {
+      value: "童軍 × 服務",
+      label: "從活動、訓練到服務角色，學會團隊、帶領與現場應變。",
+      icon: "fa-solid fa-campground"
+    },
+    {
+      value: "佛堂 × 修身",
+      label: "學習沉澱、感恩與正向待人，也讓生活多一份安定。",
+      icon: "fa-solid fa-hands-praying"
+    },
+    {
+      value: "救護義消 EMT",
+      label: "透過救護訓練與勤務，學習即時判斷、責任與服務。",
+      icon: "fa-solid fa-truck-medical"
+    },
+    {
+      value: "電子 → 軟體",
+      label: "從電子工程到軟體工程與管理，把硬體、設備、資料與系統串在一起。",
+      icon: "fa-solid fa-code"
+    },
+    {
+      value: "3 張 C 級資格",
+      label: "定向越野教練、棒球裁判、攀樹教練，都是不同階段的學習痕跡。",
+      icon: "fa-solid fa-certificate"
+    },
+    {
+      value: "3 項木章紀錄",
+      label: "童軍木章、行義童軍木章、稚齡童軍木章。",
+      icon: "fa-solid fa-award"
+    },
+    {
+      value: "2 項童軍獎章",
+      label: "113 年銀狼獎章、114 年銀牛獎章。",
+      icon: "fa-solid fa-trophy"
+    }
   ],
 
   timelineCategories: [
@@ -121,97 +157,6 @@ const aboutProfile = {
     }
   ],
 
-  lifeMosaic: [
-    {
-      title: "設備工程",
-      ratio: 36,
-      icon: "fa-solid fa-microchip",
-      image: "https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=1000&q=80",
-      desc: "把現場問題整理成可以追蹤的資料與工具。"
-    },
-    {
-      title: "童軍",
-      ratio: 24,
-      icon: "fa-solid fa-campground",
-      image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=80",
-      desc: "團隊、服務、活動帶領與現場應變。"
-    },
-    {
-      title: "佛堂",
-      ratio: 14,
-      icon: "fa-solid fa-hands-praying",
-      image: "https://images.unsplash.com/photo-1604608678051-64d46d7ec860?auto=format&fit=crop&w=1000&q=80",
-      desc: "沉澱、感恩、修身與正向待人。"
-    },
-    {
-      title: "救護義消 EMT",
-      ratio: 12,
-      icon: "fa-solid fa-truck-medical",
-      image: "https://images.unsplash.com/photo-1587745416684-47953f16f02f?auto=format&fit=crop&w=1000&q=80",
-      desc: "救護訓練、勤務與緊急應變。"
-    },
-    {
-      title: "攝影與旅遊",
-      ratio: 8,
-      icon: "fa-solid fa-camera-retro",
-      image: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1000&q=80",
-      desc: "用照片記錄生活。"
-    },
-    {
-      title: "爬山",
-      ratio: 6,
-      icon: "fa-solid fa-mountain-sun",
-      image: "https://images.unsplash.com/photo-1454496522488-7a8e488e8606?auto=format&fit=crop&w=1000&q=80",
-      desc: "用腳步累積故事。"
-    }
-  ],
-
-  works: [
-    {
-      title: "BINGO",
-      icon: "fa-solid fa-table-cells-large",
-      desc: "活動、遊戲、互動用的小工具。",
-      image: "https://images.unsplash.com/photo-1606167668584-78701c57f13d?auto=format&fit=crop&w=1000&q=80"
-    },
-    {
-      title: "Dashboard",
-      icon: "fa-solid fa-chart-line",
-      desc: "把資料變成一眼看懂的畫面。",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=80"
-    },
-    {
-      title: "AI Agent",
-      icon: "fa-solid fa-robot",
-      desc: "讓系統主動分析與提醒。",
-      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1000&q=80"
-    },
-    {
-      title: "設備工具",
-      icon: "fa-solid fa-screwdriver-wrench",
-      desc: "把現場經驗變成可維護的工具。",
-      image: "https://images.unsplash.com/photo-1581091215367-59ab6b35f5a1?auto=format&fit=crop&w=1000&q=80"
-    }
-  ],
-
-  faq: [
-    {
-      question: "為什麼要吃素？",
-      answer: "對我來說，吃素是一種選擇，也是一種提醒。提醒自己對生命多一份尊重，對生活多一點節制，也讓自己在日常裡保留一份善意。"
-    },
-    {
-      question: "為什麼要叫雷夢？",
-      answer: "雷夢是朋友之間比較熟悉的稱呼。這個名字有一點輕鬆、有一點好記，也慢慢變成朋友認識我的方式之一。"
-    },
-    {
-      question: "為什麼一直做小工具？",
-      answer: "因為我不喜歡重複做同樣的事情。如果一個工具可以讓未來少按很多次滑鼠、少花很多時間整理資料，我覺得就值得。"
-    },
-    {
-      question: "為什麼會同時做這麼多事情？",
-      answer: "工作、童軍、佛堂、救護義消、攝影、旅遊，看起來很多，但其實都是同一件事：讓自己持續學習，也讓自己有能力幫上一點忙。"
-    }
-  ],
-
   training: [
     "2010｜C級定向越野教練合格",
     "2011｜C級棒球裁判合格",
@@ -226,5 +171,20 @@ const aboutProfile = {
   awards: [
     "113 年｜童軍銀狼獎章",
     "114 年｜童軍銀牛獎章"
+  ],
+
+  faq: [
+    {
+      question: "為什麼要吃素？",
+      answer: "對我來說，吃素是一種選擇，也是一種提醒。提醒自己對生命多一份尊重，對生活多一點節制，也讓自己在日常裡保留一份善意。"
+    },
+    {
+      question: "為什麼要叫雷夢？",
+      answer: "雷夢是朋友之間比較熟悉的稱呼。這個名字有一點輕鬆、有一點好記，也慢慢變成朋友認識我的方式之一。"
+    },
+    {
+      question: "為什麼一直做小工具？",
+      answer: "因為我不喜歡重複做同樣的事情。如果一個工具可以讓未來少按很多次滑鼠、少花很多時間整理資料，我覺得就值得。"
+    }
   ]
 };
