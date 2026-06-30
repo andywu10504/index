@@ -33,6 +33,7 @@ const aboutProfile = {
     { key: "life", label: "生活", color: "#20c997" },
     { key: "education", label: "求學", color: "#0d6efd" },
     { key: "military", label: "服役", color: "#495057" },
+    { key: "club", label: "社團", color: "#6610f2" },
     { key: "work", label: "工作", color: "#198754" },
     { key: "scout", label: "童軍", color: "#fd7e14" },
     { key: "faith", label: "佛堂", color: "#6f42c1" },
