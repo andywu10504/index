@@ -267,7 +267,7 @@ const aboutProfile = {
   lifeMosaic: [
     { title: "設備工程", ratio: 36, icon: "fa-solid fa-microchip", image: "https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=1000&q=80", desc: "把現場問題整理成可以追蹤的資料與工具。" },
     { title: "童軍", ratio: 24, icon: "fa-solid fa-campground", image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=80", desc: "團隊、服務、活動帶領與現場應變。" },
-    { title: "佛堂", ratio: 14, icon: "fa-solid fa-hands-praying", image: "https://images.unsplash.com/photo-1604608678051-64d46d7ec860?auto=format&fit=crop&w=1000&q=80", desc: "沉澱、感恩、修身與正向待人。" },
+    { title: "佛堂", ratio: 14, icon: "fa-solid fa-hands-praying", image: "./image/佛堂.jpg", desc: "沉澱、感恩、修身與正向待人。" },
     { title: "救護義消", ratio: 12, icon: "fa-solid fa-truck-medical", image: "https://images.unsplash.com/photo-1587745416684-47953f16f02f?auto=format&fit=crop&w=1000&q=80", desc: "救護訓練、勤務與緊急應變。" }
   ],
 
