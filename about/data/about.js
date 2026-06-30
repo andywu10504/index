@@ -342,6 +342,13 @@ const aboutProfile = {
 
   awards: [
     {
+      title: "金門縣好人好事",
+      date: "100 年",
+      type: "獲獎紀錄",
+      image: "images/about/award-silver-wolf.jpg",
+      icon: "fa-solid fa-trophy"
+    },
+    {
       title: "童軍銀狼獎章",
       date: "113 年",
       type: "獲獎紀錄",
