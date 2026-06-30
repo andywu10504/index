@@ -201,7 +201,7 @@ const aboutProfile = {
       end: "now",
       startDate: "2024/01/14",
       desc: "佛堂修辦歷程，承擔壇主愿，持續學習沉澱、感恩、修身與正向待人。"
-    }
+    },
     {
       title: "高雄市政府救護義消",
       groupLabel: "救護義消",
