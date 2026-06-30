@@ -181,7 +181,7 @@ const aboutProfile = {
       start: 1990,
       end: "now",
       startDate: "1990/04/10",
-      desc: "佛堂修辦歷程，從求道開始持續學習、沉澱、感恩與修身。"
+      desc: "因為認同道的理念，作為踏入修道路程與信仰生活的開始。"
     },
     {
       title: "清口愿",
