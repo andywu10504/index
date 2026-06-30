@@ -136,6 +136,43 @@ const aboutProfile = {
     },
 
     {
+      title: "學生會新聞部長",
+      groupLabel: "社團",
+      rowOrder: 5,
+      category: "club",
+      start: 2008,
+      end: 2009,
+      desc: "負責學生會新聞採訪、活動紀錄、校園資訊宣傳與媒體製作。"
+    },
+    {
+      title: "浯風羅浮群群長",
+      groupLabel: "社團",
+      rowOrder: 5,
+      category: "club",
+      start: 2009,
+      end: 2011,
+      desc: "帶領羅浮童軍規劃訓練、服務活動與團隊運作。"
+    },
+    {
+      title: "學生會總務部長",
+      groupLabel: "社團",
+      rowOrder: 5,
+      category: "club",
+      start: 2009,
+      end: 2010,
+      desc: "負責學生會經費、物資管理及活動行政支援。"
+    },
+    {
+      title: "學生議會議員",
+      groupLabel: "社團",
+      rowOrder: 5,
+      category: "club",
+      start: 2010,
+      end: 2011,
+      desc: "參與學生自治事務，審議學生會提案並反映學生意見。"
+    },
+
+    {
       title: "中華民國海軍陸戰隊",
       groupLabel: "服役",
       rowOrder: 4,
