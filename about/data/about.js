@@ -129,7 +129,7 @@ const aboutProfile = {
       groupLabel: "求學",
       rowOrder: 3,
       category: "education",
-      start: 2015,
+      start: 2017,
       end: 2021,
       desc: "軟體工程與管理學系。",
       thesisTitle: "以 SWI-Prolog 為基礎之專家系統應用於金門旅遊景點推薦",
