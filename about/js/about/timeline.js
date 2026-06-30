@@ -50,10 +50,21 @@ function renderTimelineRows(startYear, endYear, totalYears) {
     row.className = "timeline-row story-animate";
 
     const trackHeight = getTimelineTrackHeight(group.items.length);
+    const rowYears = getTimelineRowYearMarks(group.items, endYear);
 
     row.innerHTML = `
       <div class="timeline-label">${escapeHtml(group.label)}</div>
+
       <div class="timeline-body">
+        <div class="timeline-row-years">
+          ${rowYears.map(function (year) {
+            const left = clampPercent(((year - startYear) / totalYears) * 100);
+            const label = year === endYear ? "Now" : year;
+
+            return `<span class="timeline-row-year-mark" style="left:${left}%;">${label}</span>`;
+          }).join("")}
+        </div>
+
         <div class="timeline-track" style="height:${trackHeight}px;">
           ${group.items.map(function (item, itemIndex) {
             return renderTimelineSegment(item, itemIndex, groupIndex, startYear, endYear, totalYears);
@@ -116,6 +127,24 @@ function groupTimelineItems(timelineItems) {
     });
 }
 
+function getTimelineRowYearMarks(items, endYear) {
+  const years = new Set();
+
+  items.forEach(function (item) {
+    years.add(item.start);
+
+    if (item.end === "now") {
+      years.add(endYear);
+    } else {
+      years.add(item.end);
+    }
+  });
+
+  return Array.from(years).sort(function (a, b) {
+    return a - b;
+  });
+}
+
 function renderTimelineSegment(item, itemIndex, groupIndex, startYear, endYear, totalYears) {
   const category = getTimelineCategory(item.category);
   const itemEnd = getTimelineEndYear(item, endYear);
@@ -142,8 +171,7 @@ function renderTimelineSegment(item, itemIndex, groupIndex, startYear, endYear, 
             title="${escapeHtml(formatTimelinePeriod(item.start, item.end) + "｜" + item.title)}"
             data-group-index="${groupIndex}"
             data-item-index="${itemIndex}">
-      <span class="timeline-bar-year">${escapeHtml(formatTimelinePeriod(item.start, item.end))}</span>
-      <span class="timeline-bar-title">${escapeHtml(item.title)}</span>
+      ${escapeHtml(item.title)}
     </button>
   `;
 }
@@ -187,18 +215,13 @@ function setActiveTimelineItem(item, activeSegmentId) {
 
   detailPanel.innerHTML = `
     <div class="timeline-feature-card" style="border-left-color:${category.color};">
-      <div class="timeline-feature-year">${escapeHtml(formatTimelinePeriod(item.start, item.end))}</div>
       <div class="timeline-feature-content">
+        <span class="timeline-feature-period">${escapeHtml(formatTimelinePeriod(item.start, item.end))}</span>
         <h3>${escapeHtml(item.title)}</h3>
         ${renderTimelineDescription(item)}
       </div>
     </div>
   `;
-
-  detailPanel.scrollIntoView({
-    behavior: "smooth",
-    block: "nearest"
-  });
 }
 
 function renderTimelineDescription(item) {
