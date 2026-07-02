@@ -180,7 +180,6 @@ const aboutProfile = {
       end: 2013,
       desc: "服役期間學會紀律、責任、抗壓與團隊合作。"
     },
-
     {
       title: "保養組",
       groupLabel: "日月光半導體製造股份有限公司",
