@@ -124,28 +124,7 @@ const aboutProfile = {
       end: 2012,
       desc: "電子工程學系。學校由國立金門技術學院改制為國立金門大學。"
     },
-    {
-      title: "國立高雄師範大學",
-      groupLabel: "求學",
-      rowOrder: 3,
-      category: "education",
-      start: 2017,
-      end: 2021,
-      desc: "軟體工程與管理學系。",
-      thesisTitle: "以 SWI-Prolog 為基礎之專家系統應用於金門旅遊景點推薦",
-      thesisUrl: "https://hdl.handle.net/11296/984c5n"
-    },
-
-    {
-      title: "學生會新聞部長",
-      groupLabel: "學生自治/社團",
-      rowOrder: 5,
-      category: "club",
-      start: 2008,
-      end: 2009,
-      desc: "負責學生會新聞採訪、活動紀錄、校園資訊宣傳與媒體製作。"
-    },
-    {
+        {
       title: "浯風羅浮群群長",
       groupLabel: "學生自治/社團",
       rowOrder: 5,
@@ -172,7 +151,26 @@ const aboutProfile = {
       end: 2011,
       desc: "參與學生自治事務，審議學生會提案並反映學生意見。"
     },
-
+    {
+      title: "國立高雄師範大學",
+      groupLabel: "求學",
+      rowOrder: 3,
+      category: "education",
+      start: 2017,
+      end: 2021,
+      desc: "軟體工程與管理學系。",
+      thesisTitle: "以 SWI-Prolog 為基礎之專家系統應用於金門旅遊景點推薦",
+      thesisUrl: "https://hdl.handle.net/11296/984c5n"
+    },
+    {
+      title: "學生會新聞部長",
+      groupLabel: "學生自治/社團",
+      rowOrder: 5,
+      category: "club",
+      start: 2008,
+      end: 2009,
+      desc: "負責學生會新聞採訪、活動紀錄、校園資訊宣傳與媒體製作。"
+    },
     {
       title: "中華民國海軍陸戰隊",
       groupLabel: "服役",
