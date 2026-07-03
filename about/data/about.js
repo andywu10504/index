@@ -349,28 +349,28 @@ const aboutProfile = {
       title: "銀狼獎章",
       date: "106 年",
       type: "童軍紀錄",
-      image: "./images/106銀狼獎章.png",
+      image: "./image/106銀狼獎章.png",
       icon: "fa-solid fa-trophy"
     },
     {
       title: "銀羊獎章",
       date: "108 年",
       type: "童軍紀錄",
-      image: "./images/108銀狼獎章.png",
+      image: "./image/108銀狼獎章.png",
       icon: "fa-solid fa-trophy"
     },
     {
       title: "銀狼獎章",
       date: "113 年",
       type: "童軍紀錄",
-      image: "./images/113銀狼獎章.png",
+      image: "./image/113銀狼獎章.png",
       icon: "fa-solid fa-trophy"
     },
     {
       title: "銀牛獎章",
       date: "114 年",
       type: "童軍紀錄",
-      image: "./images/114銀狼獎章.png",
+      image: "./image/114銀狼獎章.png",
       icon: "fa-solid fa-award"
     }
   ]
