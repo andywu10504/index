@@ -356,7 +356,14 @@ const aboutProfile = {
       title: "銀羊獎章",
       date: "108 年",
       type: "童軍紀錄",
-      image: "./image/108銀狼獎章.png",
+      image: "./image/108銀羊獎章.png",
+      icon: "fa-solid fa-trophy"
+    },
+        {
+      title: "銅質青松獎章",
+      date: "108 年",
+      type: "童軍紀錄",
+      image: "./image/108銅質青松.png",
       icon: "fa-solid fa-trophy"
     },
     {
