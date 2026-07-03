@@ -3,13 +3,13 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function loadNavbar() {
-  const container = document.getElementById("navbarContainer");
+  const navbarContainer = document.getElementById("navbarContainer");
 
-  if (!container) {
+  if (!navbarContainer) {
     return;
   }
 
-  fetch("navbar.html")
+  fetch("./navbar.html")
     .then(function (response) {
       if (!response.ok) {
         throw new Error("navbar.html 載入失敗");
@@ -18,7 +18,8 @@ function loadNavbar() {
       return response.text();
     })
     .then(function (html) {
-      container.innerHTML = html;
+      navbarContainer.innerHTML = html;
+      setupNavbarLinks();
       setActiveNavbar();
     })
     .catch(function (error) {
@@ -26,64 +27,34 @@ function loadNavbar() {
     });
 }
 
-function setActiveNavbar() {
-  const currentPage = document.body.getAttribute("data-page");
-  const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+function setupNavbarLinks() {
+  const links = {
+    home: "./index.html",
+    tools: "./tools.html",
+    about: "./about.html"
+  };
 
-  navLinks.forEach(function (link) {
-    link.classList.remove("active");
+  document.querySelectorAll("[data-nav-target]").forEach(function (link) {
+    const target = link.getAttribute("data-nav-target");
 
-    const page = link.getAttribute("data-page");
-
-    if (page === currentPage) {
-      link.classList.add("active");
+    if (links[target]) {
+      link.setAttribute("href", links[target]);
     }
   });
 }
 
-function renderToolCards(containerId, toolList) {
-  const container = document.getElementById(containerId);
+function setActiveNavbar() {
+  const currentPage = document.body.getAttribute("data-page");
 
-  if (!container) {
-    console.warn("找不到工具卡片容器：" + containerId);
+  if (!currentPage) {
     return;
   }
 
-  if (!Array.isArray(toolList)) {
-    console.warn("工具資料不是陣列");
-    return;
-  }
+  document.querySelectorAll(".navbar .nav-link").forEach(function (link) {
+    link.classList.remove("active");
 
-  container.innerHTML = "";
-
-  toolList.forEach(function (tool) {
-    const col = document.createElement("div");
-    col.className = "col-12 col-md-6 col-lg-4";
-
-    const safeTarget = tool.target || "_self";
-    const safeActionIcon = tool.actionIcon || "fa-solid fa-arrow-right";
-
-    col.innerHTML = `
-      <a href="${tool.url}" target="${safeTarget}" class="tool-card-link">
-        <div class="card tool-card h-100">
-          <div class="card-body">
-            <div class="tool-icon ${tool.iconClass}">
-              <i class="${tool.icon}"></i>
-            </div>
-
-            <h4 class="tool-title">${tool.title}</h4>
-
-            <p class="tool-desc">${tool.description}</p>
-
-            <span class="tool-action">
-              ${tool.actionText}
-              <i class="${safeActionIcon} ms-1"></i>
-            </span>
-          </div>
-        </div>
-      </a>
-    `;
-
-    container.appendChild(col);
+    if (link.getAttribute("data-page") === currentPage) {
+      link.classList.add("active");
+    }
   });
 }
