@@ -125,6 +125,17 @@ const aboutProfile = {
       desc: "電子工程學系。學校由國立金門技術學院改制為國立金門大學。"
     },
     {
+      title: "國立高雄師範大學",
+      groupLabel: "求學",
+      rowOrder: 2,
+      category: "education",
+      start: 2017,
+      end: 2021,
+      desc: "軟體工程與管理學系。",
+      thesisTitle: "以 SWI-Prolog 為基礎之專家系統應用於金門旅遊景點推薦",
+      thesisUrl: "https://hdl.handle.net/11296/984c5n"
+    },
+    {
       title: "學生會新聞部長",
       groupLabel: "學生自治/社團",
       rowOrder: 3,
@@ -161,17 +172,6 @@ const aboutProfile = {
       desc: "參與學生自治事務，審議學生會提案並反映學生意見。"
     },
     {
-      title: "國立高雄師範大學",
-      groupLabel: "求學",
-      rowOrder: 2,
-      category: "education",
-      start: 2017,
-      end: 2021,
-      desc: "軟體工程與管理學系。",
-      thesisTitle: "以 SWI-Prolog 為基礎之專家系統應用於金門旅遊景點推薦",
-      thesisUrl: "https://hdl.handle.net/11296/984c5n"
-    },
-    {
       title: "中華民國海軍陸戰隊",
       groupLabel: "服役",
       rowOrder: 4,
@@ -198,7 +198,6 @@ const aboutProfile = {
       end: "now",
       desc: "工程師。持續投入設備工程、Dashboard、自動化與 AI Agent，將現場經驗轉成可追蹤、可分析、可改善的工具。"
     },
-
     {
       title: "童軍運動",
       groupLabel: "童軍",
@@ -207,6 +206,24 @@ const aboutProfile = {
       start: 2007,
       end: "now",
       desc: "從參與服務、基本訓練，到擔任副團長、教練、助理事務等角色，在不同訓練與活動中學習團隊合作、帶領、服務精神與現場應變。"
+    },
+    {
+      title: "授銜羅浮",
+      groupLabel: "童軍",
+      rowOrder: 6,
+      category: "scout",
+      start: 2011,
+      end: 2011,
+      desc: "完成授銜，正式成為羅浮童軍。"
+    },
+    {
+      title: "服務羅浮",
+      groupLabel: "童軍",
+      rowOrder: 6,
+      category: "scout",
+      start: 2013,
+      end: 2013,
+      desc: "完成服務羅浮訓練，持續投入童軍服務與活動。"
     },
     {
       title: "求道",
