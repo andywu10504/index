@@ -275,6 +275,15 @@ const aboutProfile = {
         "參與救護訓練與勤務",
         "高雄市政府救護義消服務"
       ]
+    },
+    {
+      title: "幹事",
+      groupLabel: "救護義消",
+      rowOrder: 8,
+      category: "emt",
+      start: 2023,
+      end: "now",
+      desc: "擔任高雄市政府救護義消幹事，參與救護訓練、救護勤務與緊急應變服務。",
     }
   ],
 
