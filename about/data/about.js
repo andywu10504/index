@@ -32,8 +32,8 @@ const aboutProfile = {
   timelineCategories: [
     { key: "life", label: "生活", color: "#20c997" },
     { key: "education", label: "求學", color: "#0d6efd" },
+    { key: "club", label: "學生自治/社團", color: "#6610f2" },
     { key: "military", label: "服役", color: "#495057" },
-    { key: "club", label: "社團", color: "#6610f2" },
     { key: "work", label: "工作", color: "#198754" },
     { key: "scout", label: "童軍", color: "#fd7e14" },
     { key: "faith", label: "佛堂", color: "#6f42c1" },
@@ -145,15 +145,6 @@ const aboutProfile = {
       desc: "負責學生會新聞採訪、活動紀錄、校園資訊宣傳與媒體製作。"
     },
     {
-      title: "浯風羅浮群群長",
-      groupLabel: "學生自治/社團",
-      rowOrder: 3,
-      category: "club",
-      start: 2009,
-      end: 2011,
-      desc: "帶領羅浮童軍規劃訓練、服務活動與團隊運作。"
-    },
-    {
       title: "學生會總務部長",
       groupLabel: "學生自治/社團",
       rowOrder: 3,
@@ -182,21 +173,23 @@ const aboutProfile = {
     },
     {
       title: "保養組",
-      groupLabel: "日月光半導體製造股份有限公司",
+      groupLabel: "工作",
       rowOrder: 5,
       category: "work",
       start: 2013,
       end: 2024,
-      desc: "保養組。負責設備維護、PM 保養、異常處理與現場改善。"
+      company: "日月光半導體製造股份有限公司",
+      desc: "於日月光半導體製造股份有限公司保養組，負責設備維護、PM 保養、異常處理與現場改善。"
     },
     {
       title: "工程師",
-      groupLabel: "日月光半導體製造股份有限公司",
+      groupLabel: "工作",
       rowOrder: 5,
       category: "work",
       start: 2024,
       end: "now",
-      desc: "工程師。持續投入設備工程、Dashboard、自動化與 AI Agent，將現場經驗轉成可追蹤、可分析、可改善的工具。"
+      company: "日月光半導體製造股份有限公司",
+      desc: "於日月光半導體製造股份有限公司擔任工程師，持續投入設備工程、Dashboard、自動化與 AI Agent，將現場經驗轉成可追蹤、可分析、可改善的工具。"
     },
     {
       title: "童軍運動",
@@ -208,13 +201,22 @@ const aboutProfile = {
       desc: "從參與服務、基本訓練，到擔任副團長、教練、助理事務等角色，在不同訓練與活動中學習團隊合作、帶領、服務精神與現場應變。"
     },
     {
+      title: "浯風羅浮群群長",
+      groupLabel: "童軍",
+      rowOrder: 6,
+      category: "scout",
+      start: 2009,
+      end: 2011,
+      desc: "帶領浯風羅浮群規劃訓練、服務活動與團隊運作。"
+    },
+    {
       title: "授銜羅浮",
       groupLabel: "童軍",
       rowOrder: 6,
       category: "scout",
       start: 2011,
       end: 2011,
-      desc: "完成授銜，正式成為羅浮童軍。"
+      desc: "民國100年完成授銜，正式成為羅浮童軍。"
     },
     {
       title: "服務羅浮",
@@ -223,7 +225,7 @@ const aboutProfile = {
       category: "scout",
       start: 2013,
       end: 2013,
-      desc: "完成服務羅浮訓練，持續投入童軍服務與活動。"
+      desc: "民國102年完成服務羅浮訓練，持續投入童軍服務與活動。"
     },
     {
       title: "求道",
@@ -283,7 +285,12 @@ const aboutProfile = {
       category: "emt",
       start: 2023,
       end: "now",
-      desc: "擔任高雄市政府救護義消幹事，參與救護訓練、救護勤務與緊急應變服務。",
+      desc: "擔任高雄市政府救護義消幹事，協助救護義消相關行政、勤務與訓練事務。",
+      highlights: [
+        "高雄市政府救護義消幹事",
+        "協助勤務與訓練事務",
+        "參與救護義消服務"
+      ]
     }
   ],
 
@@ -385,7 +392,7 @@ const aboutProfile = {
       image: "./image/108銀羊獎章.png",
       icon: "fa-solid fa-trophy"
     },
-        {
+    {
       title: "銅質青松獎章",
       date: "108 年",
       type: "童軍紀錄",
