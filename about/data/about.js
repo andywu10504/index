@@ -55,7 +55,7 @@ const aboutProfile = {
     {
       title: "私立懷幼幼稚園",
       groupLabel: "求學",
-      rowOrder: 3,
+      rowOrder: 2,
       category: "education",
       start: 1992,
       end: 1993,
@@ -64,7 +64,7 @@ const aboutProfile = {
     {
       title: "私立和諧托兒所",
       groupLabel: "求學",
-      rowOrder: 3,
+      rowOrder: 2,
       category: "education",
       start: 1993,
       end: 1994,
@@ -73,7 +73,7 @@ const aboutProfile = {
     {
       title: "私立康澤幼兒園",
       groupLabel: "求學",
-      rowOrder: 3,
+      rowOrder: 2,
       category: "education",
       start: 1994,
       end: 1995,
@@ -82,7 +82,7 @@ const aboutProfile = {
     {
       title: "高雄市前鎮區復興國民小學",
       groupLabel: "求學",
-      rowOrder: 3,
+      rowOrder: 2,
       category: "education",
       start: 1995,
       end: 2001,
@@ -91,7 +91,7 @@ const aboutProfile = {
     {
       title: "高雄市立英明國民中學",
       groupLabel: "求學",
-      rowOrder: 3,
+      rowOrder: 2,
       category: "education",
       start: 2001,
       end: 2004,
@@ -100,7 +100,7 @@ const aboutProfile = {
     {
       title: "高雄市私立大榮高級中學",
       groupLabel: "求學",
-      rowOrder: 3,
+      rowOrder: 2,
       category: "education",
       start: 2004,
       end: 2007,
@@ -109,7 +109,7 @@ const aboutProfile = {
     {
       title: "國立金門技術學院",
       groupLabel: "求學",
-      rowOrder: 3,
+      rowOrder: 2,
       category: "education",
       start: 2007,
       end: 2010,
@@ -118,7 +118,7 @@ const aboutProfile = {
     {
       title: "國立金門大學（改制）",
       groupLabel: "求學",
-      rowOrder: 3,
+      rowOrder: 2,
       category: "education",
       start: 2010,
       end: 2012,
@@ -127,7 +127,7 @@ const aboutProfile = {
     {
       title: "學生會新聞部長",
       groupLabel: "學生自治/社團",
-      rowOrder: 5,
+      rowOrder: 3,
       category: "club",
       start: 2008,
       end: 2009,
@@ -136,7 +136,7 @@ const aboutProfile = {
     {
       title: "浯風羅浮群群長",
       groupLabel: "學生自治/社團",
-      rowOrder: 5,
+      rowOrder: 3,
       category: "club",
       start: 2009,
       end: 2011,
@@ -145,7 +145,7 @@ const aboutProfile = {
     {
       title: "學生會總務部長",
       groupLabel: "學生自治/社團",
-      rowOrder: 5,
+      rowOrder: 3,
       category: "club",
       start: 2009,
       end: 2010,
@@ -154,7 +154,7 @@ const aboutProfile = {
     {
       title: "學生議會議員",
       groupLabel: "學生自治/社團",
-      rowOrder: 5,
+      rowOrder: 3,
       category: "club",
       start: 2010,
       end: 2011,
@@ -163,7 +163,7 @@ const aboutProfile = {
     {
       title: "國立高雄師範大學",
       groupLabel: "求學",
-      rowOrder: 3,
+      rowOrder: 2,
       category: "education",
       start: 2017,
       end: 2021,
