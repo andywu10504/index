@@ -450,5 +450,5 @@ const aboutProfile = {
     { year: 2019, title: "高雄車禍", score: -2, desc: "開車被酒駕車禍撞上，了解生命無常" },
     { year: 2019, title: "立愿清口茹素", score: 2, desc: "" },
     { year: 2021, title: "碩士畢業", score: 3, desc: "" }
-  ],
+  ]
 };
