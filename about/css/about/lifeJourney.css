@@ -1,327 +1,182 @@
-function renderLifeJourney() {
-  const svg = document.getElementById("lifeJourneySvg");
-  const card = document.getElementById("lifeJourneyCard");
+.life-journey-section {
+  padding: 88px 0;
+  background:
+    radial-gradient(circle at top left, rgba(111, 66, 193, .12), transparent 34%),
+    #ffffff;
+}
 
-  if (!svg || !card) {
-    return;
+.life-journey-panel {
+  padding: 28px;
+  border-radius: 34px;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 20px 55px rgba(15, 23, 42, .08);
+}
+
+.life-journey-chart-wrap {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 10px;
+}
+
+.life-journey-svg {
+  width: 100%;
+  min-width: 1120px;
+  height: 520px;
+  display: block;
+}
+
+.life-journey-axis {
+  stroke: #cbd5e1;
+  stroke-width: 1;
+}
+
+.life-journey-zero-line {
+  stroke: #64748b;
+  stroke-width: 2;
+  stroke-dasharray: 8 8;
+}
+
+.life-journey-grid-line {
+  stroke: #e5e7eb;
+  stroke-width: 1;
+}
+
+.life-journey-area-positive {
+  fill: rgba(25, 135, 84, .08);
+}
+
+.life-journey-area-negative {
+  fill: rgba(220, 53, 69, .06);
+}
+
+.life-journey-line {
+  fill: none;
+  stroke: #0d6efd;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 10px 18px rgba(13, 110, 253, .22));
+}
+
+.life-journey-point {
+  cursor: pointer;
+  stroke: #ffffff;
+  stroke-width: 4;
+  transition: r .2s ease, filter .2s ease;
+}
+
+.life-journey-point:hover,
+.life-journey-point.is-active {
+  r: 12;
+  filter: drop-shadow(0 8px 16px rgba(15, 23, 42, .28));
+}
+
+.life-journey-point-label {
+  fill: #111827;
+  font-size: 13px;
+  font-weight: 900;
+  pointer-events: none;
+}
+
+.life-journey-year-label {
+  fill: #64748b;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.life-journey-score-label {
+  fill: #64748b;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.life-journey-card {
+  margin-top: 24px;
+}
+
+.life-journey-detail-card {
+  padding: clamp(26px, 4vw, 42px);
+  border-radius: 30px;
+  background: #ffffff;
+  border-left: 8px solid #0d6efd;
+  box-shadow: 0 18px 48px rgba(15, 23, 42, .12);
+}
+
+.life-journey-detail-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 16px;
+}
+
+.life-journey-detail-year {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: #0d6efd;
+  font-weight: 950;
+  letter-spacing: .4px;
+}
+
+.life-journey-detail-card h3 {
+  color: #111827;
+  font-size: clamp(28px, 4vw, 46px);
+  font-weight: 950;
+  letter-spacing: -1px;
+  margin-bottom: 0;
+}
+
+.life-journey-score-badge {
+  flex: 0 0 auto;
+  min-width: 72px;
+  height: 72px;
+  border-radius: 24px;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 950;
+  box-shadow: 0 14px 28px rgba(15, 23, 42, .18);
+}
+
+.life-journey-detail-card p {
+  color: #4b5563;
+  font-size: 17px;
+  line-height: 1.9;
+  margin-bottom: 0;
+}
+
+.life-journey-empty {
+  padding: 34px;
+  border-radius: 28px;
+  background: #ffffff;
+  color: #94a3b8;
+  text-align: center;
+  font-weight: 900;
+}
+
+@media (max-width: 576px) {
+  .life-journey-section {
+    padding: 58px 0;
   }
 
-  if (!Array.isArray(aboutProfile.lifeJourney) || aboutProfile.lifeJourney.length === 0) {
-    card.innerHTML = `<div class="life-journey-empty">尚未建立人生歷程資料</div>`;
-    return;
+  .life-journey-panel {
+    padding: 18px;
   }
 
-  const items = normalizeLifeJourneyItems(aboutProfile.lifeJourney);
-
-  renderLifeJourneySvg(svg, items);
-  bindLifeJourneyPoints(items);
-  setActiveLifeJourneyItem(items[0]);
-}
-
-function normalizeLifeJourneyItems(items) {
-  return items
-    .filter(function (item) {
-      return item && typeof item.year === "number" && typeof item.score === "number";
-    })
-    .map(function (item, index) {
-      return {
-        id: "lifeJourneyPoint" + index,
-        year: item.year,
-        title: item.title || "",
-        score: item.score,
-        desc: item.desc || "",
-        category: item.category || "",
-        date: item.date || "",
-        raw: item
-      };
-    })
-    .sort(function (a, b) {
-      if (a.year !== b.year) {
-        return a.year - b.year;
-      }
-
-      return a.score - b.score;
-    });
-}
-
-function renderLifeJourneySvg(svg, items) {
-  const config = getLifeJourneyChartConfig(items);
-  const points = items.map(function (item, index) {
-    return getLifeJourneyPoint(item, index, items, config);
-  });
-
-  svg.innerHTML = `
-    ${renderLifeJourneyBackground(config)}
-    ${renderLifeJourneyAxes(config)}
-    ${renderLifeJourneyLine(points)}
-    ${points.map(function (point) {
-      return renderLifeJourneyPoint(point);
-    }).join("")}
-  `;
-}
-
-function getLifeJourneyChartConfig(items) {
-  const years = items.map(function (item) {
-    return item.year;
-  });
-
-  return {
-    width: 1200,
-    height: 520,
-    paddingLeft: 72,
-    paddingRight: 56,
-    paddingTop: 54,
-    paddingBottom: 64,
-    minYear: Math.min.apply(null, years),
-    maxYear: Math.max.apply(null, years),
-    minScore: -3,
-    maxScore: 3
-  };
-}
-
-function getLifeJourneyPoint(item, index, items, config) {
-  const sameYearItems = items.filter(function (x) {
-    return x.year === item.year;
-  });
-
-  const sameYearIndex = sameYearItems.findIndex(function (x) {
-    return x.id === item.id;
-  });
-
-  const sameYearOffset = sameYearItems.length > 1
-    ? (sameYearIndex - ((sameYearItems.length - 1) / 2)) * 14
-    : 0;
-
-  return {
-    item: item,
-    x: getLifeJourneyX(item.year, config) + sameYearOffset,
-    y: getLifeJourneyY(item.score, config)
-  };
-}
-
-function getLifeJourneyX(year, config) {
-  const usableWidth = config.width - config.paddingLeft - config.paddingRight;
-  const range = config.maxYear - config.minYear;
-
-  if (range <= 0) {
-    return config.paddingLeft;
+  .life-journey-svg {
+    min-width: 920px;
+    height: 480px;
   }
 
-  return config.paddingLeft + ((year - config.minYear) / range) * usableWidth;
-}
-
-function getLifeJourneyY(score, config) {
-  const usableHeight = config.height - config.paddingTop - config.paddingBottom;
-  const range = config.maxScore - config.minScore;
-  const value = (score - config.minScore) / range;
-
-  return config.height - config.paddingBottom - (value * usableHeight);
-}
-
-function renderLifeJourneyBackground(config) {
-  const zeroY = getLifeJourneyY(0, config);
-
-  return `
-    <rect class="life-journey-area-positive"
-          x="${config.paddingLeft}"
-          y="${config.paddingTop}"
-          width="${config.width - config.paddingLeft - config.paddingRight}"
-          height="${zeroY - config.paddingTop}"></rect>
-
-    <rect class="life-journey-area-negative"
-          x="${config.paddingLeft}"
-          y="${zeroY}"
-          width="${config.width - config.paddingLeft - config.paddingRight}"
-          height="${config.height - config.paddingBottom - zeroY}"></rect>
-  `;
-}
-
-function renderLifeJourneyAxes(config) {
-  const rows = [-3, -2, -1, 0, 1, 2, 3];
-  const yearMarks = getLifeJourneyYearMarks(config.minYear, config.maxYear);
-
-  return `
-    ${rows.map(function (score) {
-      const y = getLifeJourneyY(score, config);
-      const lineClass = score === 0 ? "life-journey-zero-line" : "life-journey-grid-line";
-
-      return `
-        <line class="${lineClass}"
-              x1="${config.paddingLeft}"
-              y1="${y}"
-              x2="${config.width - config.paddingRight}"
-              y2="${y}"></line>
-
-        <text class="life-journey-score-label"
-              x="${config.paddingLeft - 24}"
-              y="${y + 4}"
-              text-anchor="end">${score}</text>
-      `;
-    }).join("")}
-
-    ${yearMarks.map(function (year) {
-      const x = getLifeJourneyX(year, config);
-
-      return `
-        <text class="life-journey-year-label"
-              x="${x}"
-              y="${config.height - 26}"
-              text-anchor="middle">${year}</text>
-      `;
-    }).join("")}
-  `;
-}
-
-function getLifeJourneyYearMarks(minYear, maxYear) {
-  const marks = [];
-  const start = Math.ceil(minYear / 5) * 5;
-
-  marks.push(minYear);
-
-  for (let year = start; year <= maxYear; year += 5) {
-    if (year !== minYear && year !== maxYear) {
-      marks.push(year);
-    }
+  .life-journey-detail-header {
+    display: block;
   }
 
-  marks.push(maxYear);
-
-  return Array.from(new Set(marks)).sort(function (a, b) {
-    return a - b;
-  });
-}
-
-function renderLifeJourneyLine(points) {
-  if (points.length === 0) {
-    return "";
+  .life-journey-score-badge {
+    margin-top: 16px;
   }
-
-  const path = points.map(function (point, index) {
-    return (index === 0 ? "M" : "L") + point.x + " " + point.y;
-  }).join(" ");
-
-  return `<path class="life-journey-line" d="${path}"></path>`;
-}
-
-function renderLifeJourneyPoint(point) {
-  const color = getLifeJourneyScoreColor(point.item.score);
-  const labelY = point.item.score >= 0 ? point.y - 18 : point.y + 30;
-
-  return `
-    <g class="life-journey-point-group">
-      <circle id="${point.item.id}"
-              class="life-journey-point"
-              cx="${point.x}"
-              cy="${point.y}"
-              r="9"
-              fill="${color}"
-              data-life-journey-id="${point.item.id}"></circle>
-
-      <text class="life-journey-point-label"
-            x="${point.x}"
-            y="${labelY}"
-            text-anchor="middle">${escapeHtml(getLifeJourneyShortTitle(point.item.title))}</text>
-    </g>
-  `;
-}
-
-function getLifeJourneyShortTitle(title) {
-  if (!title) {
-    return "";
-  }
-
-  if (title.length <= 8) {
-    return title;
-  }
-
-  return title.substring(0, 8) + "…";
-}
-
-function bindLifeJourneyPoints(items) {
-  const points = document.querySelectorAll(".life-journey-point");
-
-  points.forEach(function (point) {
-    point.addEventListener("click", function () {
-      const id = point.getAttribute("data-life-journey-id");
-      const item = items.find(function (x) {
-        return x.id === id;
-      });
-
-      if (!item) {
-        return;
-      }
-
-      setActiveLifeJourneyItem(item);
-    });
-  });
-}
-
-function setActiveLifeJourneyItem(item) {
-  document.querySelectorAll(".life-journey-point").forEach(function (point) {
-    point.classList.remove("is-active");
-  });
-
-  const activePoint = document.getElementById(item.id);
-
-  if (activePoint) {
-    activePoint.classList.add("is-active");
-  }
-
-  renderLifeJourneyCard(item);
-}
-
-function renderLifeJourneyCard(item) {
-  const card = document.getElementById("lifeJourneyCard");
-
-  if (!card) {
-    return;
-  }
-
-  const color = getLifeJourneyScoreColor(item.score);
-  const dateText = item.date || String(item.year);
-
-  card.innerHTML = `
-    <div class="life-journey-detail-card" style="border-left-color:${color};">
-      <div class="life-journey-detail-header">
-        <div>
-          <span class="life-journey-detail-year">${escapeHtml(dateText)}</span>
-          <h3>${escapeHtml(item.title)}</h3>
-        </div>
-
-        <span class="life-journey-score-badge" style="background:${color};">
-          ${item.score > 0 ? "+" + item.score : item.score}
-        </span>
-      </div>
-
-      ${item.desc ? `<p>${escapeHtml(item.desc)}</p>` : ""}
-    </div>
-  `;
-}
-
-function getLifeJourneyScoreColor(score) {
-  if (score >= 3) {
-    return "#198754";
-  }
-
-  if (score === 2) {
-    return "#20c997";
-  }
-
-  if (score === 1) {
-    return "#86b7fe";
-  }
-
-  if (score === 0) {
-    return "#64748b";
-  }
-
-  if (score === -1) {
-    return "#ffc107";
-  }
-
-  if (score === -2) {
-    return "#fd7e14";
-  }
-
-  return "#dc3545";
 }
