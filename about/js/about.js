@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
   renderAboutStory();
   renderAboutStats();
   renderAboutTimeline();
+  renderLifeJourney();
   renderAboutLifeMosaic();
   renderAboutWorks();
   renderAboutFaq();
