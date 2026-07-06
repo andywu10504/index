@@ -325,3 +325,5 @@ function getLifeJourneyScoreColor(score) {
 
   return "#dc3545";
 }
+
+window.renderLifeJourney = renderLifeJourney;
