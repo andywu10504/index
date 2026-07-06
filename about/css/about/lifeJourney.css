@@ -54,6 +54,7 @@
 
 .life-journey-area {
   fill: url(#lifeJourneyAreaGradient);
+  pointer-events: none;
 }
 
 .life-journey-line {
@@ -62,16 +63,19 @@
   stroke-width: 6;
   stroke-linecap: round;
   stroke-linejoin: round;
+  pointer-events: none;
 }
 
 .life-journey-point-wrap {
   cursor: pointer;
+  outline: none;
 }
 
 .life-journey-point {
   fill: #ffffff;
   stroke-width: 5;
-  transition: r .2s ease, filter .2s ease;
+  transition: r .2s ease, filter .2s ease, stroke-width .2s ease;
+  pointer-events: none;
 }
 
 .life-journey-point.is-positive {
@@ -84,10 +88,14 @@
 
 .life-journey-point-hit {
   fill: transparent;
+  pointer-events: all;
 }
 
-.life-journey-point-wrap:hover .life-journey-point {
+.life-journey-point-wrap:hover .life-journey-point,
+.life-journey-point-wrap.is-active .life-journey-point,
+.life-journey-point-wrap:focus .life-journey-point {
   r: 12;
+  stroke-width: 6;
   filter: drop-shadow(0 8px 16px rgba(15, 23, 42, .22));
 }
 
