@@ -413,7 +413,7 @@ const aboutProfile = {
       image: "./image/114銀狼獎章.png",
       icon: "fa-solid fa-award"
     }
-  ]
+  ],
 
   lifeJourney: [
     { year: 1989, date: "1989/09/26", title: "出生", score: 0, desc: "1989年09月26日於高雄出生" },
