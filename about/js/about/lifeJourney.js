@@ -122,10 +122,10 @@ function renderLifeJourneyPoint(item, index) {
   const scoreClass = item.score >= 0 ? "is-positive" : "is-negative";
 
   return `
-    <button class="life-journey-point-wrap" data-life-journey-index="${index}">
+    <g class="life-journey-point-wrap" data-life-journey-index="${index}" tabindex="0">
       <circle class="life-journey-point ${scoreClass}" cx="${item.x}" cy="${item.y}" r="8"></circle>
-      <circle class="life-journey-point-hit" cx="${item.x}" cy="${item.y}" r="18"></circle>
-    </button>
+      <circle class="life-journey-point-hit" cx="${item.x}" cy="${item.y}" r="22"></circle>
+    </g>
   `;
 }
 
@@ -134,15 +134,31 @@ function bindLifeJourneyPoints(items) {
 
   points.forEach(function (point) {
     point.addEventListener("click", function () {
-      const index = Number(point.getAttribute("data-life-journey-index"));
+      activateLifeJourneyPoint(point, items);
+    });
 
-      if (Number.isNaN(index) || !items[index]) {
-        return;
+    point.addEventListener("keydown", function (event) {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        activateLifeJourneyPoint(point, items);
       }
-
-      setActiveLifeJourneyItem(items[index]);
     });
   });
+}
+
+function activateLifeJourneyPoint(point, items) {
+  const index = Number(point.getAttribute("data-life-journey-index"));
+
+  if (Number.isNaN(index) || !items[index]) {
+    return;
+  }
+
+  document.querySelectorAll(".life-journey-point-wrap").forEach(function (element) {
+    element.classList.remove("is-active");
+  });
+
+  point.classList.add("is-active");
+  setActiveLifeJourneyItem(items[index]);
 }
 
 function setActiveLifeJourneyItem(item) {
