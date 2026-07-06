@@ -8,8 +8,9 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" rel="stylesheet">
 
-  <link href="./css/common.css" rel="stylesheet">
-  <link href="./about/css/about.css" rel="stylesheet">
+  <link href="css/common.css" rel="stylesheet">
+  <link href="./css/about.css" rel="stylesheet">
+  <link href="./css/about/lifeJourney.css" rel="stylesheet">
 </head>
 
 <body data-page="about">
@@ -93,6 +94,24 @@
           </div>
 
           <div class="timeline-rows" id="timelineRows"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="life-journey-section" id="lifeJourney">
+      <div class="container">
+        <div class="section-header apple-header story-animate">
+          <span class="section-label">Life Journey</span>
+          <h2>人生歷程</h2>
+          <p>用一條人生曲線，看見生命中的高峰、低谷與轉折。</p>
+        </div>
+    
+        <div class="life-journey-panel story-animate">
+          <div class="life-journey-chart-wrap">
+            <svg id="lifeJourneySvg" class="life-journey-svg" viewBox="0 0 1200 520" preserveAspectRatio="none"></svg>
+          </div>
+    
+          <div class="life-journey-card" id="lifeJourneyCard"></div>
         </div>
       </div>
     </section>
@@ -187,20 +206,21 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="./about/data/about.js"></script>
+  <script src="./data/about.js"></script>
   <script src="./js/common.js"></script>
 
-  <script src="./about/js/about/dom.js"></script>
-  <script src="./about/js/about/hero.js"></script>
-  <script src="./about/js/about/story.js"></script>
-  <script src="./about/js/about/stats.js"></script>
-  <script src="./about/js/about/timeline.js"></script>
-  <script src="./about/js/about/lifeMosaic.js"></script>
-  <script src="./about/js/about/works.js"></script>
-  <script src="./about/js/about/faq.js"></script>
-  <script src="./about/js/about/awards.js"></script>
-  <script src="./about/js/about/belief.js"></script>
-  <script src="./about/js/about/animations.js"></script>
-  <script src="./about/js/about.js"></script>
+  <script src="./js/about/dom.js"></script>
+  <script src="./js/about/hero.js"></script>
+  <script src="./js/about/story.js"></script>
+  <script src="./js/about/stats.js"></script>
+  <script src="./js/about/timeline.js"></script>
+  <script src="./js/about/lifeJourney.js"></script>
+  <script src="./js/about/lifeMosaic.js"></script>
+  <script src="./js/about/works.js"></script>
+  <script src="./js/about/faq.js"></script>
+  <script src="./js/about/awards.js"></script>
+  <script src="./js/about/belief.js"></script>
+  <script src="./js/about/animations.js"></script>
+  <script src="./js/about.js"></script>
 </body>
 </html>
