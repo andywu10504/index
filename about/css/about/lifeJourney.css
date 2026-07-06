@@ -1,14 +1,14 @@
 .life-journey-section {
   padding: 88px 0;
-  background:
-    radial-gradient(circle at top left, rgba(111, 66, 193, .12), transparent 34%),
-    #ffffff;
+  background: #ffffff;
 }
 
 .life-journey-panel {
   padding: 28px;
   border-radius: 34px;
-  background: #f8fafc;
+  background:
+    radial-gradient(circle at top left, rgba(13, 110, 253, .12), transparent 34%),
+    #f8fafc;
   border: 1px solid #e5e7eb;
   box-shadow: 0 20px 55px rgba(15, 23, 42, .08);
 }
@@ -16,133 +16,136 @@
 .life-journey-chart-wrap {
   width: 100%;
   overflow-x: auto;
-  overflow-y: hidden;
   padding-bottom: 10px;
 }
 
 .life-journey-svg {
   width: 100%;
-  min-width: 1120px;
+  min-width: 920px;
   height: 520px;
   display: block;
 }
 
-.life-journey-axis {
-  stroke: #cbd5e1;
-  stroke-width: 1;
+.life-journey-bg {
+  fill: #ffffff;
 }
 
-.life-journey-zero-line {
-  stroke: #64748b;
-  stroke-width: 2;
-  stroke-dasharray: 8 8;
-}
-
-.life-journey-grid-line {
+.life-journey-grid-line,
+.life-journey-year-line {
   stroke: #e5e7eb;
   stroke-width: 1;
 }
 
-.life-journey-area-positive {
-  fill: rgba(25, 135, 84, .08);
+.life-journey-year-line {
+  stroke-dasharray: 5 8;
 }
 
-.life-journey-area-negative {
-  fill: rgba(220, 53, 69, .06);
+.life-journey-zero-line {
+  stroke: #94a3b8;
+  stroke-width: 2;
+}
+
+.life-journey-score-label,
+.life-journey-year-label {
+  fill: #6b7280;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.life-journey-area {
+  fill: url(#lifeJourneyAreaGradient);
 }
 
 .life-journey-line {
   fill: none;
-  stroke: #0d6efd;
-  stroke-width: 5;
+  stroke: url(#lifeJourneyLineGradient);
+  stroke-width: 6;
   stroke-linecap: round;
   stroke-linejoin: round;
-  filter: drop-shadow(0 10px 18px rgba(13, 110, 253, .22));
+}
+
+.life-journey-point-wrap {
+  cursor: pointer;
 }
 
 .life-journey-point {
-  cursor: pointer;
-  stroke: #ffffff;
-  stroke-width: 4;
+  fill: #ffffff;
+  stroke-width: 5;
   transition: r .2s ease, filter .2s ease;
 }
 
-.life-journey-point:hover,
-.life-journey-point.is-active {
+.life-journey-point.is-positive {
+  stroke: #0d6efd;
+}
+
+.life-journey-point.is-negative {
+  stroke: #dc3545;
+}
+
+.life-journey-point-hit {
+  fill: transparent;
+}
+
+.life-journey-point-wrap:hover .life-journey-point {
   r: 12;
-  filter: drop-shadow(0 8px 16px rgba(15, 23, 42, .28));
-}
-
-.life-journey-point-label {
-  fill: #111827;
-  font-size: 13px;
-  font-weight: 900;
-  pointer-events: none;
-}
-
-.life-journey-year-label {
-  fill: #64748b;
-  font-size: 12px;
-  font-weight: 900;
-}
-
-.life-journey-score-label {
-  fill: #64748b;
-  font-size: 12px;
-  font-weight: 900;
+  filter: drop-shadow(0 8px 16px rgba(15, 23, 42, .22));
 }
 
 .life-journey-card {
-  margin-top: 24px;
+  margin-top: 20px;
 }
 
-.life-journey-detail-card {
-  padding: clamp(26px, 4vw, 42px);
+.life-journey-card-inner {
+  padding: clamp(24px, 4vw, 40px);
   border-radius: 30px;
   background: #ffffff;
+  box-shadow: 0 16px 42px rgba(15, 23, 42, .08);
   border-left: 8px solid #0d6efd;
-  box-shadow: 0 18px 48px rgba(15, 23, 42, .12);
 }
 
-.life-journey-detail-header {
+.life-journey-card-head {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
-  gap: 18px;
-  margin-bottom: 16px;
+  gap: 16px;
+  margin-bottom: 14px;
 }
 
-.life-journey-detail-year {
-  display: inline-block;
-  margin-bottom: 10px;
+.life-journey-year {
   color: #0d6efd;
+  font-size: 18px;
   font-weight: 950;
-  letter-spacing: .4px;
 }
 
-.life-journey-detail-card h3 {
-  color: #111827;
-  font-size: clamp(28px, 4vw, 46px);
-  font-weight: 950;
-  letter-spacing: -1px;
-  margin-bottom: 0;
-}
-
-.life-journey-score-badge {
-  flex: 0 0 auto;
-  min-width: 72px;
-  height: 72px;
-  border-radius: 24px;
-  color: #ffffff;
+.life-journey-score {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 28px;
+  min-width: 48px;
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 999px;
+  color: #ffffff;
   font-weight: 950;
-  box-shadow: 0 14px 28px rgba(15, 23, 42, .18);
 }
 
-.life-journey-detail-card p {
+.life-journey-score.is-positive {
+  background: #0d6efd;
+}
+
+.life-journey-score.is-negative {
+  background: #dc3545;
+}
+
+.life-journey-card h3 {
+  color: #111827;
+  font-size: clamp(26px, 4vw, 42px);
+  font-weight: 950;
+  letter-spacing: -1px;
+  margin-bottom: 14px;
+}
+
+.life-journey-card p {
   color: #4b5563;
   font-size: 17px;
   line-height: 1.9;
@@ -150,12 +153,12 @@
 }
 
 .life-journey-empty {
-  padding: 34px;
-  border-radius: 28px;
-  background: #ffffff;
+  padding: 28px;
+  border-radius: 24px;
   color: #94a3b8;
+  background: #ffffff;
+  font-weight: 800;
   text-align: center;
-  font-weight: 900;
 }
 
 @media (max-width: 576px) {
@@ -168,15 +171,7 @@
   }
 
   .life-journey-svg {
-    min-width: 920px;
+    min-width: 820px;
     height: 480px;
-  }
-
-  .life-journey-detail-header {
-    display: block;
-  }
-
-  .life-journey-score-badge {
-    margin-top: 16px;
   }
 }
