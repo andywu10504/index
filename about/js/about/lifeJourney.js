@@ -31,154 +31,185 @@ function normalizeLifeJourneyItems(items) {
         score: item.score,
         desc: item.desc || "",
         category: item.category || "",
-        date: item.date || "",
-        raw: item
+        x: 0,
+        y: 0
       };
-    })
-    .sort(function (a, b) {
-      if (a.year !== b.year) {
-        return a.year - b.year;
-      }
-
-      return a.score - b.score;
     });
 }
 
 function renderLifeJourneySvg(svg, items) {
-  const config = getLifeJourneyChartConfig(items);
-  const points = items.map(function (item, index) {
-    return getLifeJourneyPoint(item, index, items, config);
+  const width = 1200;
+  const height = 520;
+  const padding = {
+    top: 50,
+    right: 60,
+    bottom: 70,
+    left: 70
+  };
+
+  const minYear = Math.min.apply(null, items.map(function (item) { return item.year; }));
+  const maxYear = Math.max.apply(null, items.map(function (item) { return item.year; }));
+  const minScore = -3;
+  const maxScore = 3;
+
+  items.forEach(function (item) {
+    item.x = mapValue(item.year, minYear, maxYear, padding.left, width - padding.right);
+    item.y = mapValue(item.score, maxScore, minScore, padding.top, height - padding.bottom);
   });
+
+  const zeroY = mapValue(0, maxScore, minScore, padding.top, height - padding.bottom);
+  const path = buildSmoothPath(items);
+  const areaPath = buildAreaPath(items, zeroY);
 
   svg.innerHTML = `
-    ${renderLifeJourneyBackground(config)}
-    ${renderLifeJourneyAxes(config)}
-    ${renderLifeJourneyLine(points)}
-    ${points.map(function (point) {
-      return renderLifeJourneyPoint(point);
+    <defs>
+      <linearGradient id="lifeJourneyLineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#0d6efd"></stop>
+        <stop offset="45%" stop-color="#6f42c1"></stop>
+        <stop offset="100%" stop-color="#20c997"></stop>
+      </linearGradient>
+
+      <linearGradient id="lifeJourneyAreaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="rgba(13,110,253,.26)"></stop>
+        <stop offset="100%" stop-color="rgba(13,110,253,0)"></stop>
+      </linearGradient>
+    </defs>
+
+    ${renderLifeJourneyGrid(width, height, padding, minYear, maxYear, minScore, maxScore)}
+
+    <path class="life-journey-area" d="${areaPath}"></path>
+    <path class="life-journey-line" d="${path}"></path>
+
+    ${items.map(function (item, index) {
+      return renderLifeJourneyPoint(item, index);
     }).join("")}
   `;
 }
 
-function getLifeJourneyChartConfig(items) {
-  const years = items.map(function (item) {
-    return item.year;
-  });
+function renderLifeJourneyGrid(width, height, padding, minYear, maxYear, minScore, maxScore) {
+  const scoreMarks = [-3, -2, -1, 0, 1, 2, 3];
+  const yearMarks = getLifeJourneyYearMarks(minYear, maxYear);
+  const zeroY = mapValue(0, maxScore, minScore, padding.top, height - padding.bottom);
 
-  return {
-    width: 1200,
-    height: 520,
-    paddingLeft: 72,
-    paddingRight: 56,
-    paddingTop: 54,
-    paddingBottom: 64,
-    minYear: Math.min.apply(null, years),
-    maxYear: Math.max.apply(null, years),
-    minScore: -3,
-    maxScore: 3
-  };
+  const scoreLines = scoreMarks.map(function (score) {
+    const y = mapValue(score, maxScore, minScore, padding.top, height - padding.bottom);
+    const label = score > 0 ? "+" + score : String(score);
+
+    return `
+      <line class="life-journey-grid-line" x1="${padding.left}" y1="${y}" x2="${width - padding.right}" y2="${y}"></line>
+      <text class="life-journey-score-label" x="${padding.left - 18}" y="${y + 5}" text-anchor="end">${label}</text>
+    `;
+  }).join("");
+
+  const yearLabels = yearMarks.map(function (year) {
+    const x = mapValue(year, minYear, maxYear, padding.left, width - padding.right);
+
+    return `
+      <line class="life-journey-year-line" x1="${x}" y1="${padding.top}" x2="${x}" y2="${height - padding.bottom}"></line>
+      <text class="life-journey-year-label" x="${x}" y="${height - 30}" text-anchor="middle">${year}</text>
+    `;
+  }).join("");
+
+  return `
+    <rect class="life-journey-bg" x="0" y="0" width="${width}" height="${height}" rx="28"></rect>
+    ${scoreLines}
+    ${yearLabels}
+    <line class="life-journey-zero-line" x1="${padding.left}" y1="${zeroY}" x2="${width - padding.right}" y2="${zeroY}"></line>
+  `;
 }
 
-function getLifeJourneyPoint(item, index, items, config) {
-  const sameYearItems = items.filter(function (x) {
-    return x.year === item.year;
-  });
+function renderLifeJourneyPoint(item, index) {
+  const scoreClass = item.score >= 0 ? "is-positive" : "is-negative";
 
-  const sameYearIndex = sameYearItems.findIndex(function (x) {
-    return x.id === item.id;
-  });
-
-  const sameYearOffset = sameYearItems.length > 1
-    ? (sameYearIndex - ((sameYearItems.length - 1) / 2)) * 14
-    : 0;
-
-  return {
-    item: item,
-    x: getLifeJourneyX(item.year, config) + sameYearOffset,
-    y: getLifeJourneyY(item.score, config)
-  };
+  return `
+    <button class="life-journey-point-wrap" data-life-journey-index="${index}">
+      <circle class="life-journey-point ${scoreClass}" cx="${item.x}" cy="${item.y}" r="8"></circle>
+      <circle class="life-journey-point-hit" cx="${item.x}" cy="${item.y}" r="18"></circle>
+    </button>
+  `;
 }
 
-function getLifeJourneyX(year, config) {
-  const usableWidth = config.width - config.paddingLeft - config.paddingRight;
-  const range = config.maxYear - config.minYear;
+function bindLifeJourneyPoints(items) {
+  const points = document.querySelectorAll(".life-journey-point-wrap");
 
-  if (range <= 0) {
-    return config.paddingLeft;
+  points.forEach(function (point) {
+    point.addEventListener("click", function () {
+      const index = Number(point.getAttribute("data-life-journey-index"));
+
+      if (Number.isNaN(index) || !items[index]) {
+        return;
+      }
+
+      setActiveLifeJourneyItem(items[index]);
+    });
+  });
+}
+
+function setActiveLifeJourneyItem(item) {
+  const card = document.getElementById("lifeJourneyCard");
+
+  if (!card) {
+    return;
   }
 
-  return config.paddingLeft + ((year - config.minYear) / range) * usableWidth;
-}
+  const scoreText = item.score > 0 ? "+" + item.score : String(item.score);
+  const badgeClass = item.score >= 0 ? "is-positive" : "is-negative";
 
-function getLifeJourneyY(score, config) {
-  const usableHeight = config.height - config.paddingTop - config.paddingBottom;
-  const range = config.maxScore - config.minScore;
-  const value = (score - config.minScore) / range;
+  card.innerHTML = `
+    <div class="life-journey-card-inner">
+      <div class="life-journey-card-head">
+        <span class="life-journey-year">${item.year}</span>
+        <span class="life-journey-score ${badgeClass}">${scoreText}</span>
+      </div>
 
-  return config.height - config.paddingBottom - (value * usableHeight);
-}
-
-function renderLifeJourneyBackground(config) {
-  const zeroY = getLifeJourneyY(0, config);
-
-  return `
-    <rect class="life-journey-area-positive"
-          x="${config.paddingLeft}"
-          y="${config.paddingTop}"
-          width="${config.width - config.paddingLeft - config.paddingRight}"
-          height="${zeroY - config.paddingTop}"></rect>
-
-    <rect class="life-journey-area-negative"
-          x="${config.paddingLeft}"
-          y="${zeroY}"
-          width="${config.width - config.paddingLeft - config.paddingRight}"
-          height="${config.height - config.paddingBottom - zeroY}"></rect>
+      <h3>${escapeHtml(item.title)}</h3>
+      ${item.desc ? `<p>${escapeHtml(item.desc)}</p>` : `<p class="text-muted mb-0">這段故事尚未補充說明。</p>`}
+    </div>
   `;
 }
 
-function renderLifeJourneyAxes(config) {
-  const rows = [-3, -2, -1, 0, 1, 2, 3];
-  const yearMarks = getLifeJourneyYearMarks(config.minYear, config.maxYear);
+function buildSmoothPath(items) {
+  if (items.length === 0) {
+    return "";
+  }
 
-  return `
-    ${rows.map(function (score) {
-      const y = getLifeJourneyY(score, config);
-      const lineClass = score === 0 ? "life-journey-zero-line" : "life-journey-grid-line";
+  if (items.length === 1) {
+    return `M ${items[0].x} ${items[0].y}`;
+  }
 
-      return `
-        <line class="${lineClass}"
-              x1="${config.paddingLeft}"
-              y1="${y}"
-              x2="${config.width - config.paddingRight}"
-              y2="${y}"></line>
+  let path = `M ${items[0].x} ${items[0].y}`;
 
-        <text class="life-journey-score-label"
-              x="${config.paddingLeft - 24}"
-              y="${y + 4}"
-              text-anchor="end">${score}</text>
-      `;
-    }).join("")}
+  for (let i = 0; i < items.length - 1; i++) {
+    const current = items[i];
+    const next = items[i + 1];
+    const controlX = (current.x + next.x) / 2;
 
-    ${yearMarks.map(function (year) {
-      const x = getLifeJourneyX(year, config);
+    path += ` C ${controlX} ${current.y}, ${controlX} ${next.y}, ${next.x} ${next.y}`;
+  }
 
-      return `
-        <text class="life-journey-year-label"
-              x="${x}"
-              y="${config.height - 26}"
-              text-anchor="middle">${year}</text>
-      `;
-    }).join("")}
-  `;
+  return path;
+}
+
+function buildAreaPath(items, zeroY) {
+  if (items.length === 0) {
+    return "";
+  }
+
+  const linePath = buildSmoothPath(items);
+  const first = items[0];
+  const last = items[items.length - 1];
+
+  return `${linePath} L ${last.x} ${zeroY} L ${first.x} ${zeroY} Z`;
 }
 
 function getLifeJourneyYearMarks(minYear, maxYear) {
   const marks = [];
-  const start = Math.ceil(minYear / 5) * 5;
+  const step = 5;
+  const first = Math.ceil(minYear / step) * step;
 
   marks.push(minYear);
 
-  for (let year = start; year <= maxYear; year += 5) {
+  for (let year = first; year <= maxYear; year += step) {
     if (year !== minYear && year !== maxYear) {
       marks.push(year);
     }
@@ -191,139 +222,10 @@ function getLifeJourneyYearMarks(minYear, maxYear) {
   });
 }
 
-function renderLifeJourneyLine(points) {
-  if (points.length === 0) {
-    return "";
+function mapValue(value, sourceMin, sourceMax, targetMin, targetMax) {
+  if (sourceMax === sourceMin) {
+    return (targetMin + targetMax) / 2;
   }
 
-  const path = points.map(function (point, index) {
-    return (index === 0 ? "M" : "L") + point.x + " " + point.y;
-  }).join(" ");
-
-  return `<path class="life-journey-line" d="${path}"></path>`;
+  return targetMin + ((value - sourceMin) / (sourceMax - sourceMin)) * (targetMax - targetMin);
 }
-
-function renderLifeJourneyPoint(point) {
-  const color = getLifeJourneyScoreColor(point.item.score);
-  const labelY = point.item.score >= 0 ? point.y - 18 : point.y + 30;
-
-  return `
-    <g class="life-journey-point-group">
-      <circle id="${point.item.id}"
-              class="life-journey-point"
-              cx="${point.x}"
-              cy="${point.y}"
-              r="9"
-              fill="${color}"
-              data-life-journey-id="${point.item.id}"></circle>
-
-      <text class="life-journey-point-label"
-            x="${point.x}"
-            y="${labelY}"
-            text-anchor="middle">${escapeHtml(getLifeJourneyShortTitle(point.item.title))}</text>
-    </g>
-  `;
-}
-
-function getLifeJourneyShortTitle(title) {
-  if (!title) {
-    return "";
-  }
-
-  if (title.length <= 8) {
-    return title;
-  }
-
-  return title.substring(0, 8) + "…";
-}
-
-function bindLifeJourneyPoints(items) {
-  const points = document.querySelectorAll(".life-journey-point");
-
-  points.forEach(function (point) {
-    point.addEventListener("click", function () {
-      const id = point.getAttribute("data-life-journey-id");
-      const item = items.find(function (x) {
-        return x.id === id;
-      });
-
-      if (!item) {
-        return;
-      }
-
-      setActiveLifeJourneyItem(item);
-    });
-  });
-}
-
-function setActiveLifeJourneyItem(item) {
-  document.querySelectorAll(".life-journey-point").forEach(function (point) {
-    point.classList.remove("is-active");
-  });
-
-  const activePoint = document.getElementById(item.id);
-
-  if (activePoint) {
-    activePoint.classList.add("is-active");
-  }
-
-  renderLifeJourneyCard(item);
-}
-
-function renderLifeJourneyCard(item) {
-  const card = document.getElementById("lifeJourneyCard");
-
-  if (!card) {
-    return;
-  }
-
-  const color = getLifeJourneyScoreColor(item.score);
-  const dateText = item.date || String(item.year);
-
-  card.innerHTML = `
-    <div class="life-journey-detail-card" style="border-left-color:${color};">
-      <div class="life-journey-detail-header">
-        <div>
-          <span class="life-journey-detail-year">${escapeHtml(dateText)}</span>
-          <h3>${escapeHtml(item.title)}</h3>
-        </div>
-
-        <span class="life-journey-score-badge" style="background:${color};">
-          ${item.score > 0 ? "+" + item.score : item.score}
-        </span>
-      </div>
-
-      ${item.desc ? `<p>${escapeHtml(item.desc)}</p>` : ""}
-    </div>
-  `;
-}
-
-function getLifeJourneyScoreColor(score) {
-  if (score >= 3) {
-    return "#198754";
-  }
-
-  if (score === 2) {
-    return "#20c997";
-  }
-
-  if (score === 1) {
-    return "#86b7fe";
-  }
-
-  if (score === 0) {
-    return "#64748b";
-  }
-
-  if (score === -1) {
-    return "#ffc107";
-  }
-
-  if (score === -2) {
-    return "#fd7e14";
-  }
-
-  return "#dc3545";
-}
-
-window.renderLifeJourney = renderLifeJourney;
