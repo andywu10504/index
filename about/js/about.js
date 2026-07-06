@@ -8,13 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
   renderAboutStory();
   renderAboutStats();
   renderAboutTimeline();
-
-  if (typeof renderLifeJourney === "function") {
-    renderLifeJourney();
-  } else {
-    console.error("找不到 renderLifeJourney，請確認 ./js/about/lifeJourney.js 是否已載入。");
-  }
-
+  renderLifeJourney();
   renderAboutLifeMosaic();
   renderAboutWorks();
   renderAboutFaq();
