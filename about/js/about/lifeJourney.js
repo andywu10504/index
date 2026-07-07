@@ -13,6 +13,11 @@ function renderLifeJourney() {
 
   const items = normalizeLifeJourneyItems(aboutProfile.lifeJourney);
 
+  if (items.length === 0) {
+    card.innerHTML = `<div class="life-journey-empty">人生歷程資料格式錯誤，請確認 date 與 score。</div>`;
+    return;
+  }
+
   renderLifeJourneySvg(svg, items);
   bindLifeJourneyPoints(items);
   activateLifeJourneyPointByIndex(0, items);
@@ -21,13 +26,13 @@ function renderLifeJourney() {
 function normalizeLifeJourneyItems(items) {
   return items
     .filter(function (item) {
-      return item && typeof item.score === "number" && (item.date || typeof item.year === "number");
+      return item && item.date && typeof item.score === "number";
     })
     .map(function (item, index) {
       return {
         id: "lifeJourneyPoint" + index,
+        date: String(item.date),
         year: getLifeJourneyYear(item),
-        date: item.date || "",
         title: item.title || "",
         score: item.score,
         desc: item.desc || "",
@@ -284,19 +289,11 @@ function getLifeJourneyYearMarks(minYear, maxYear) {
 }
 
 function getLifeJourneyYear(item) {
-  if (item.date) {
-    return Number(String(item.date).substring(0, 4));
-  }
-
-  return item.year;
+  return Number(String(item.date).substring(0, 4));
 }
 
 function getLifeJourneyDateValue(item) {
-  if (item.date) {
-    return dateTextToYearValue(item.date);
-  }
-
-  return item.year;
+  return dateTextToYearValue(item.date);
 }
 
 function dateTextToYearValue(dateText) {
@@ -320,11 +317,7 @@ function dateTextToYearValue(dateText) {
 }
 
 function formatLifeJourneyDate(item) {
-  if (item.date) {
-    return item.date;
-  }
-
-  return String(item.year);
+  return item.date;
 }
 
 function mapValue(value, sourceMin, sourceMax, targetMin, targetMax) {
