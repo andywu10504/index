@@ -433,7 +433,7 @@ lifeJourney: [
     { date: "2012", title: "延畢", score: -2, desc: "因為學分不足而延畢。", category: "education" },
     { date: "2013", title: "大學畢業", score: 2, desc: "終於在多重方式下，完成大學學業。", category: "education" },
     { date: "2013/09", title: "服役於海軍陸戰隊", score: 1, desc: "抽中海軍陸戰隊，為期一年的兵役。", category: "military" },
-    { date: "2013", title: "初次瞭解吃素的難度", score: 2, desc: "隊上有一個吃素的同袍，家裡只有他一個人吃素，在家吃得非常辛苦。", category: "faith" },
+    { date: "2013/11", title: "初次瞭解吃素的難度", score: 2, desc: "隊上有一個吃素的同袍，家裡只有他一個人吃素，在家吃得非常辛苦。", category: "faith" },
     { date: "2013/12", title: "第二次失戀", score: -2, desc: "當兵期間，跟第二任女朋友分手。", category: "life" },
     { date: "2014", title: "日月光任職", score: 2, desc: "退伍後第一個工作在華碩旗下的外包維修廠商擔任工程師，同時間也投履歷至日月光半導體，工作一個月後，旋即至日月光任職。", category: "work" },
     { date: "2014", title: "輪班轉正常班", score: 3, desc: "因為某些因素，從輪班轉往正常班，雖然錢領得比較少，但有更多的時間可以配合幫辦。", category: "work" },
