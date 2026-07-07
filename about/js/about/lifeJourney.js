@@ -53,12 +53,12 @@ function normalizeLifeJourneyItems(items) {
 
 function renderLifeJourneySvg(svg, items) {
   const width = 1200;
-  const height = 520;
+  const height = 560;
   const padding = {
-    top: 50,
-    right: 60,
-    bottom: 70,
-    left: 70
+    top: 60,
+    right: 70,
+    bottom: 80,
+    left: 80
   };
 
   const minValue = Math.min.apply(null, items.map(function (item) { return item.value; }));
@@ -73,12 +73,11 @@ function renderLifeJourneySvg(svg, items) {
     item.y = mapValue(item.score, maxScore, minScore, padding.top, height - padding.bottom);
   });
 
-  applyClosePointOffset(items);
+  applyClosePointOffset(items, width, padding);
 
-  const trendItems = buildYearlyTrendItems(items, minValue, maxValue, padding, width, height, minScore, maxScore);
   const zeroY = mapValue(0, maxScore, minScore, padding.top, height - padding.bottom);
-  const path = buildSmoothPath(trendItems);
-  const areaPath = buildAreaPath(trendItems, zeroY);
+  const path = buildSmoothPath(items);
+  const areaPath = buildAreaPath(items, zeroY);
 
   svg.innerHTML = `
     <defs>
@@ -105,34 +104,6 @@ function renderLifeJourneySvg(svg, items) {
   `;
 }
 
-function buildYearlyTrendItems(items, minValue, maxValue, padding, width, height, minScore, maxScore) {
-  const yearMap = new Map();
-
-  items.forEach(function (item) {
-    if (!yearMap.has(item.year)) {
-      yearMap.set(item.year, []);
-    }
-
-    yearMap.get(item.year).push(item.score);
-  });
-
-  return Array.from(yearMap.keys())
-    .sort(function (a, b) {
-      return a - b;
-    })
-    .map(function (year) {
-      const scores = yearMap.get(year);
-      const averageScore = scores.reduce(function (sum, score) {
-        return sum + score;
-      }, 0) / scores.length;
-
-      return {
-        x: mapValue(year, minValue, maxValue, padding.left, width - padding.right),
-        y: mapValue(averageScore, maxScore, minScore, padding.top, height - padding.bottom)
-      };
-    });
-}
-
 function renderLifeJourneyGrid(width, height, padding, minYear, maxYear, minScore, maxScore, minValue, maxValue) {
   const scoreMarks = [-3, -2, -1, 0, 1, 2, 3];
   const yearMarks = getLifeJourneyYearMarks(minYear, maxYear);
@@ -153,7 +124,7 @@ function renderLifeJourneyGrid(width, height, padding, minYear, maxYear, minScor
 
     return `
       <line class="life-journey-year-line" x1="${x}" y1="${padding.top}" x2="${x}" y2="${height - padding.bottom}"></line>
-      <text class="life-journey-year-label" x="${x}" y="${height - 30}" text-anchor="middle">${year}</text>
+      <text class="life-journey-year-label" x="${x}" y="${height - 34}" text-anchor="middle">${year}</text>
     `;
   }).join("");
 
@@ -171,7 +142,7 @@ function renderLifeJourneyPoint(item, index) {
   return `
     <g class="life-journey-point-wrap" data-life-journey-index="${index}" tabindex="0">
       <circle class="life-journey-point ${scoreClass}" cx="${item.x}" cy="${item.y}" r="8"></circle>
-      <circle class="life-journey-point-hit" cx="${item.x}" cy="${item.y}" r="22"></circle>
+      <circle class="life-journey-point-hit" cx="${item.x}" cy="${item.y}" r="24"></circle>
     </g>
   `;
 }
@@ -236,24 +207,35 @@ function setActiveLifeJourneyItem(item) {
   `;
 }
 
-function applyClosePointOffset(items) {
-  const sortedItems = items.slice().sort(function (a, b) {
-    return a.x - b.x;
-  });
+function applyClosePointOffset(items, width, padding) {
+  const minGap = 26;
+  const maxShift = 42;
 
-  const minDistance = 14;
+  for (let i = 0; i < items.length; i++) {
+    let cluster = [items[i]];
 
-  sortedItems.forEach(function (item, index) {
-    if (index === 0) {
-      return;
+    for (let j = i + 1; j < items.length; j++) {
+      const previous = cluster[cluster.length - 1];
+
+      if (Math.abs(items[j].x - previous.x) <= minGap) {
+        cluster.push(items[j]);
+      } else {
+        break;
+      }
     }
 
-    const previous = sortedItems[index - 1];
+    if (cluster.length > 1) {
+      const centerIndex = (cluster.length - 1) / 2;
+      const step = Math.min(16, maxShift / centerIndex || 16);
 
-    if (Math.abs(item.x - previous.x) < minDistance && Math.abs(item.y - previous.y) < 28) {
-      item.x = previous.x + minDistance;
+      cluster.forEach(function (item, index) {
+        const offset = (index - centerIndex) * step;
+        item.x = clampNumber(item.x + offset, padding.left + 8, width - padding.right - 8);
+      });
     }
-  });
+
+    i += cluster.length - 1;
+  }
 }
 
 function buildSmoothPath(items) {
@@ -348,4 +330,8 @@ function mapValue(value, sourceMin, sourceMax, targetMin, targetMax) {
   }
 
   return targetMin + ((value - sourceMin) / (sourceMax - sourceMin)) * (targetMax - targetMin);
+}
+
+function clampNumber(value, min, max) {
+  return Math.max(min, Math.min(max, value));
 }
