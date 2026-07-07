@@ -54,6 +54,10 @@ function normalizeLifeJourneyItems(items) {
 function renderLifeJourneySvg(svg, items) {
   const width = 1200;
   const height = 580;
+
+  svg.setAttribute("viewBox", "0 0 " + width + " " + height);
+  svg.setAttribute("preserveAspectRatio", "none");
+
   const padding = {
     top: 64,
     right: 76,
