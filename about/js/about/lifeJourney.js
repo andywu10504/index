@@ -56,9 +56,9 @@ function renderLifeJourneySvg(svg, items) {
   const height = 560;
   const padding = {
     top: 60,
-    right: 70,
+    right: 80,
     bottom: 80,
-    left: 80
+    left: 110
   };
 
   const minValue = Math.min.apply(null, items.map(function (item) { return item.value; }));
@@ -115,7 +115,7 @@ function renderLifeJourneyGrid(width, height, padding, minYear, maxYear, minScor
 
     return `
       <line class="life-journey-grid-line" x1="${padding.left}" y1="${y}" x2="${width - padding.right}" y2="${y}"></line>
-      <text class="life-journey-score-label" x="${padding.left - 18}" y="${y + 5}" text-anchor="end">${label}</text>
+      <text class="life-journey-score-label" x="${padding.left - 24}" y="${y + 5}" text-anchor="end">${label}</text>
     `;
   }).join("");
 
