@@ -73,11 +73,12 @@ function renderLifeJourneySvg(svg, items) {
     item.y = mapValue(item.score, maxScore, minScore, padding.top, height - padding.bottom);
   });
 
-  applySamePointOffset(items);
+  applyClosePointOffset(items);
 
+  const trendItems = buildYearlyTrendItems(items, minValue, maxValue, padding, width, height, minScore, maxScore);
   const zeroY = mapValue(0, maxScore, minScore, padding.top, height - padding.bottom);
-  const path = buildSmoothPath(items);
-  const areaPath = buildAreaPath(items, zeroY);
+  const path = buildSmoothPath(trendItems);
+  const areaPath = buildAreaPath(trendItems, zeroY);
 
   svg.innerHTML = `
     <defs>
@@ -102,6 +103,34 @@ function renderLifeJourneySvg(svg, items) {
       return renderLifeJourneyPoint(item, index);
     }).join("")}
   `;
+}
+
+function buildYearlyTrendItems(items, minValue, maxValue, padding, width, height, minScore, maxScore) {
+  const yearMap = new Map();
+
+  items.forEach(function (item) {
+    if (!yearMap.has(item.year)) {
+      yearMap.set(item.year, []);
+    }
+
+    yearMap.get(item.year).push(item.score);
+  });
+
+  return Array.from(yearMap.keys())
+    .sort(function (a, b) {
+      return a - b;
+    })
+    .map(function (year) {
+      const scores = yearMap.get(year);
+      const averageScore = scores.reduce(function (sum, score) {
+        return sum + score;
+      }, 0) / scores.length;
+
+      return {
+        x: mapValue(year, minValue, maxValue, padding.left, width - padding.right),
+        y: mapValue(averageScore, maxScore, minScore, padding.top, height - padding.bottom)
+      };
+    });
 }
 
 function renderLifeJourneyGrid(width, height, padding, minYear, maxYear, minScore, maxScore, minValue, maxValue) {
@@ -207,30 +236,23 @@ function setActiveLifeJourneyItem(item) {
   `;
 }
 
-function applySamePointOffset(items) {
-  const groupMap = new Map();
-
-  items.forEach(function (item) {
-    const key = item.x.toFixed(2) + "_" + item.y.toFixed(2);
-
-    if (!groupMap.has(key)) {
-      groupMap.set(key, []);
-    }
-
-    groupMap.get(key).push(item);
+function applyClosePointOffset(items) {
+  const sortedItems = items.slice().sort(function (a, b) {
+    return a.x - b.x;
   });
 
-  groupMap.forEach(function (group) {
-    if (group.length <= 1) {
+  const minDistance = 14;
+
+  sortedItems.forEach(function (item, index) {
+    if (index === 0) {
       return;
     }
 
-    const offset = 10;
+    const previous = sortedItems[index - 1];
 
-    group.forEach(function (item, index) {
-      const center = (group.length - 1) / 2;
-      item.x = item.x + ((index - center) * offset);
-    });
+    if (Math.abs(item.x - previous.x) < minDistance && Math.abs(item.y - previous.y) < 28) {
+      item.x = previous.x + minDistance;
+    }
   });
 }
 
