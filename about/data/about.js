@@ -382,35 +382,35 @@ const aboutProfile = {
       title: "銀狼獎章",
       date: "106 年",
       type: "童軍紀錄",
-      image: "./image/106銀狼獎章.png",
+      image: "./about/image/106銀狼獎章.png",
       icon: "fa-solid fa-trophy"
     },
     {
       title: "銀羊獎章",
       date: "108 年",
       type: "童軍紀錄",
-      image: "./image/108銀羊獎章.png",
+      image: "./about/image/108銀羊獎章.png",
       icon: "fa-solid fa-trophy"
     },
     {
       title: "銅質青松獎章",
       date: "108 年",
       type: "童軍紀錄",
-      image: "./image/108銅質青松.png",
+      image: "./about/image/108銅質青松.png",
       icon: "fa-solid fa-trophy"
     },
     {
       title: "銀狼獎章",
       date: "113 年",
       type: "童軍紀錄",
-      image: "./image/113銀狼獎章.png",
+      image: "./about/image/113銀狼獎章.png",
       icon: "fa-solid fa-trophy"
     },
     {
       title: "銀牛獎章",
       date: "114 年",
       type: "童軍紀錄",
-      image: "./image/114銀狼獎章.png",
+      image: "./about/image/114銀狼獎章.png",
       icon: "fa-solid fa-award"
     }
   ],
