@@ -209,10 +209,12 @@ function setActiveLifeJourneyItem(item) {
 
 function applyClosePointOffset(items, width, padding) {
   const minGap = 26;
-  const maxShift = 42;
+  const step = 16;
+  const leftLimit = padding.left + 14;
+  const rightLimit = width - padding.right - 14;
 
   for (let i = 0; i < items.length; i++) {
-    let cluster = [items[i]];
+    const cluster = [items[i]];
 
     for (let j = i + 1; j < items.length; j++) {
       const previous = cluster[cluster.length - 1];
@@ -225,12 +227,23 @@ function applyClosePointOffset(items, width, padding) {
     }
 
     if (cluster.length > 1) {
-      const centerIndex = (cluster.length - 1) / 2;
-      const step = Math.min(16, maxShift / centerIndex || 16);
+      const centerX = cluster.reduce(function (sum, item) {
+        return sum + item.x;
+      }, 0) / cluster.length;
+
+      const totalWidth = (cluster.length - 1) * step;
+      let startX = centerX - (totalWidth / 2);
+
+      if (startX < leftLimit) {
+        startX = leftLimit;
+      }
+
+      if (startX + totalWidth > rightLimit) {
+        startX = rightLimit - totalWidth;
+      }
 
       cluster.forEach(function (item, index) {
-        const offset = (index - centerIndex) * step;
-        item.x = clampNumber(item.x + offset, padding.left + 8, width - padding.right - 8);
+        item.x = clampNumber(startX + (index * step), leftLimit, rightLimit);
       });
     }
 
