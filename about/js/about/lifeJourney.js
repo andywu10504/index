@@ -53,12 +53,12 @@ function normalizeLifeJourneyItems(items) {
 
 function renderLifeJourneySvg(svg, items) {
   const width = 1200;
-  const height = 560;
+  const height = 580;
   const padding = {
-    top: 60,
-    right: 80,
-    bottom: 80,
-    left: 110
+    top: 64,
+    right: 76,
+    bottom: 98,
+    left: 118
   };
 
   const minValue = Math.min.apply(null, items.map(function (item) { return item.value; }));
@@ -108,31 +108,42 @@ function renderLifeJourneyGrid(width, height, padding, minYear, maxYear, minScor
   const scoreMarks = [-3, -2, -1, 0, 1, 2, 3];
   const yearMarks = getLifeJourneyYearMarks(minYear, maxYear);
   const zeroY = mapValue(0, maxScore, minScore, padding.top, height - padding.bottom);
+  const chartLeft = padding.left;
+  const chartRight = width - padding.right;
+  const chartTop = padding.top;
+  const chartBottom = height - padding.bottom;
 
   const scoreLines = scoreMarks.map(function (score) {
-    const y = mapValue(score, maxScore, minScore, padding.top, height - padding.bottom);
+    const y = mapValue(score, maxScore, minScore, chartTop, chartBottom);
     const label = score > 0 ? "+" + score : String(score);
 
     return `
-      <line class="life-journey-grid-line" x1="${padding.left}" y1="${y}" x2="${width - padding.right}" y2="${y}"></line>
-      <text class="life-journey-score-label" x="${padding.left - 24}" y="${y + 5}" text-anchor="end">${label}</text>
+      <line class="life-journey-grid-line" x1="${chartLeft}" y1="${y}" x2="${chartRight}" y2="${y}"></line>
+      <text class="life-journey-score-label" x="${chartLeft - 34}" y="${y + 5}" text-anchor="end">${label}</text>
     `;
   }).join("");
 
   const yearLabels = yearMarks.map(function (year) {
-    const x = mapValue(year, minValue, maxValue, padding.left, width - padding.right);
+    const x = mapValue(year, minValue, maxValue, chartLeft, chartRight);
 
     return `
-      <line class="life-journey-year-line" x1="${x}" y1="${padding.top}" x2="${x}" y2="${height - padding.bottom}"></line>
-      <text class="life-journey-year-label" x="${x}" y="${height - 34}" text-anchor="middle">${year}</text>
+      <line class="life-journey-year-line" x1="${x}" y1="${chartTop}" x2="${x}" y2="${chartBottom}"></line>
+      <text class="life-journey-year-label" x="${x}" y="${height - 42}" text-anchor="middle">${year}</text>
     `;
   }).join("");
 
   return `
     <rect class="life-journey-bg" x="0" y="0" width="${width}" height="${height}" rx="28"></rect>
+
+    <text class="life-journey-axis-title" x="${chartLeft - 72}" y="${chartTop - 18}" text-anchor="start">分數</text>
+    <text class="life-journey-axis-title" x="${chartRight}" y="${height - 16}" text-anchor="end">年份</text>
+
     ${scoreLines}
     ${yearLabels}
-    <line class="life-journey-zero-line" x1="${padding.left}" y1="${zeroY}" x2="${width - padding.right}" y2="${zeroY}"></line>
+
+    <line class="life-journey-axis-line" x1="${chartLeft}" y1="${chartTop}" x2="${chartLeft}" y2="${chartBottom}"></line>
+    <line class="life-journey-axis-line" x1="${chartLeft}" y1="${chartBottom}" x2="${chartRight}" y2="${chartBottom}"></line>
+    <line class="life-journey-zero-line" x1="${chartLeft}" y1="${zeroY}" x2="${chartRight}" y2="${zeroY}"></line>
   `;
 }
 
@@ -209,12 +220,10 @@ function setActiveLifeJourneyItem(item) {
 
 function applyClosePointOffset(items, width, padding) {
   const minGap = 26;
-  const step = 16;
-  const leftLimit = padding.left + 14;
-  const rightLimit = width - padding.right - 14;
+  const maxShift = 42;
 
   for (let i = 0; i < items.length; i++) {
-    const cluster = [items[i]];
+    let cluster = [items[i]];
 
     for (let j = i + 1; j < items.length; j++) {
       const previous = cluster[cluster.length - 1];
@@ -227,23 +236,12 @@ function applyClosePointOffset(items, width, padding) {
     }
 
     if (cluster.length > 1) {
-      const centerX = cluster.reduce(function (sum, item) {
-        return sum + item.x;
-      }, 0) / cluster.length;
-
-      const totalWidth = (cluster.length - 1) * step;
-      let startX = centerX - (totalWidth / 2);
-
-      if (startX < leftLimit) {
-        startX = leftLimit;
-      }
-
-      if (startX + totalWidth > rightLimit) {
-        startX = rightLimit - totalWidth;
-      }
+      const centerIndex = (cluster.length - 1) / 2;
+      const step = Math.min(16, maxShift / centerIndex || 16);
 
       cluster.forEach(function (item, index) {
-        item.x = clampNumber(startX + (index * step), leftLimit, rightLimit);
+        const offset = (index - centerIndex) * step;
+        item.x = clampNumber(item.x + offset, padding.left + 16, width - padding.right - 16);
       });
     }
 
