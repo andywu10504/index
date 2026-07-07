@@ -169,6 +169,17 @@
   text-align: center;
 }
 
+.life-journey-axis-title {
+  fill: #475569;
+  font-size: 13px;
+  font-weight: 950;
+}
+
+.life-journey-axis-line {
+  stroke: #cbd5e1;
+  stroke-width: 2;
+}
+
 @media (max-width: 576px) {
   .life-journey-section {
     padding: 58px 0;
