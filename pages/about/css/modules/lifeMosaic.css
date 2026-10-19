@@ -1,0 +1,23 @@
+/* 2026-10-19: readable fixed photo collage; no flex-width compression */
+.life-mosaic { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; width: 100%; height: auto; }
+.life-mosaic-row { display: contents; }
+.mosaic-card { position: relative; display: block; width: 100%; min-width: 0; height: clamp(210px, 23vw, 310px); padding: 0; border: 0; border-radius: 20px; overflow: hidden; text-align: left; color: white; cursor: pointer; background: linear-gradient(135deg,#526984,#23364c); box-shadow: 0 12px 32px rgba(15,23,42,.14); }
+.mosaic-card:focus-visible { outline: 3px solid #1e88e5; outline-offset: 3px; }
+.mosaic-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .35s ease; }
+.mosaic-card img[hidden] { display: none; }
+.mosaic-card:hover img { transform: scale(1.045); }
+.mosaic-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: end; align-items: start; gap: 7px; padding: clamp(16px, 2vw, 26px); background: linear-gradient(0deg, rgba(8,17,29,.91), rgba(8,17,29,.08) 75%); }
+.mosaic-overlay i { font-size: clamp(20px, 2vw, 28px); }
+.mosaic-title { display: block; font-size: clamp(19px, 1.8vw, 25px); line-height: 1.3; font-weight: 800; word-break: keep-all; }
+.mosaic-percent { display: inline-block; font-size: clamp(16px, 1.45vw, 21px); line-height: 1.25; font-weight: 800; white-space: nowrap; }
+.life-mosaic-summary { margin: 12px 0 0; color: #64748b; font-size: 14px; }
+.life-mosaic-dialog { border: none; border-radius: 20px; max-width: min(560px, calc(100vw - 32px)); padding: 30px; box-shadow: 0 25px 90px rgba(0,0,0,.3); }
+.life-mosaic-dialog::backdrop { background: rgba(12,22,34,.62); }
+.life-mosaic-dialog h3 { font-weight: 800; margin: 0 40px 18px 0; }
+.life-mosaic-dialog p { line-height: 1.9; }
+.life-mosaic-detail-time { font-weight: 800; }
+.life-mosaic-detail-breakdown { font-size: 14px; color: #64748b; }
+.life-mosaic-close { position: absolute; top: 15px; right: 15px; border: 0; background: #f1f5f9; border-radius: 50%; width: 36px; height: 36px; cursor: pointer; }
+@media(max-width: 850px) { .life-mosaic { grid-template-columns: repeat(2, minmax(0,1fr)); } .mosaic-card { height: 240px; } }
+@media(max-width: 480px) { .life-mosaic { grid-template-columns: 1fr; } .mosaic-card { height: 220px; } .mosaic-title { font-size: 23px; } }
+@media(prefers-reduced-motion: reduce) { .mosaic-card img { transition: none; } }

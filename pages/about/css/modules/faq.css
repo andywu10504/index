@@ -1,0 +1,24 @@
+.faq-accordion {
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.faq-accordion .accordion-item {
+  border: 0;
+  margin-bottom: 16px;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, .08);
+}
+
+.faq-accordion .accordion-button {
+  padding: 22px 26px;
+  font-weight: 900;
+  font-size: 18px;
+}
+
+.faq-accordion .accordion-body {
+  color: #6b7280;
+  line-height: 1.9;
+  padding: 24px 26px;
+}

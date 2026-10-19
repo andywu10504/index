@@ -1,0 +1,105 @@
+@media (max-width: 992px) {
+  .stats-grid,
+  .work-showcase {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero-photo-card img {
+    height: 460px;
+  }
+
+  .timeline-head,
+  .timeline-row {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-head-title,
+  .timeline-label {
+    text-align: left;
+  }
+}
+
+@media (max-width: 576px) {
+  .about-hero {
+    min-height: auto;
+    padding: 84px 0;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  .story-section,
+  .stats-section,
+  .timeline-section,
+  .life-mosaic-section,
+  .works-section,
+  .faq-section,
+  .award-section,
+  .belief-section {
+    padding: 58px 0;
+  }
+
+  .stats-grid,
+  .work-showcase {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-card {
+    min-height: auto;
+  }
+
+  .timeline-panel {
+    padding: 18px;
+  }
+
+  .timeline-year-mark {
+    font-size: 10px;
+  }
+
+  .timeline-row {
+    padding: 16px;
+  }
+
+  .detail-card {
+    padding: 18px 20px;
+  }
+
+  .detail-card h3 {
+    font-size: 18px;
+  }
+
+
+  .hero-photo-card img {
+    height: 380px;
+  }
+}
+
+/* Responsive layout corrections: preserve existing desktop styling. */
+@media (max-width: 991.98px) {
+  .about-hero h1 { font-size: clamp(2.6rem, 7vw, 4.5rem); overflow-wrap: anywhere; }
+  .about-hero .row > *, .timeline-row > *, .award-category-grid > * { min-width: 0; }
+  .timeline-panel { padding: 20px; }
+  .life-journey-section { padding: 64px 0; }
+  .life-journey-panel { padding: 18px; border-radius: 24px; }
+  .life-journey-chart-wrap { max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; }
+}
+@media (max-width: 575.98px) {
+  .about-hero { padding: 58px 0; }
+  .about-hero h1 { font-size: clamp(2.35rem, 11vw, 3.5rem); letter-spacing: -1px; }
+  .about-hero p { font-size: 1.05rem; }
+  .hero-actions { flex-direction: column; }
+  .hero-actions > * { width: 100%; }
+  .apple-header h2 { font-size: clamp(1.75rem, 8vw, 2.5rem); overflow-wrap: anywhere; }
+  .apple-header p { font-size: 1rem; }
+  .stats-grid, .work-showcase, .award-category-grid { grid-template-columns: minmax(0, 1fr); }
+  .stat-card { padding: 22px; border-radius: 20px; }
+  .timeline-panel { padding: 12px; border-radius: 20px; }
+  .timeline-row { padding: 14px; border-radius: 16px; }
+  .timeline-legend { justify-content: flex-start; }
+  .timeline-legend span { max-width: 100%; }
+  .life-journey-section { padding: 58px 0; }
+  .life-journey-panel { padding: 12px; border-radius: 20px; }
+  .life-journey-svg { min-width: 820px; }
+  .life-journey-card { max-width: 100%; overflow-wrap: anywhere; }
+}
